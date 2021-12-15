@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSKIM 의 무친 끝말잇기</title>
+
+</head>
+<body>
+    <div>
+        <span id="order">
+            1
+        </span>
+        번째 참가자
+    </div>
+    <div>
+        제시어 :
+        <span id="word">
+
+        </span>
+    </div>
+    <input type="text" >
+    <button class="target">입력</button>
+    <!-- <button class="btn">버튼2</button>
+    <button class="btn target">버튼3</button> -->
+    <script>
+        // prompt 는 사용자로부터 str 값을 받고, confirm 은 T or F 를 체크받음
+        // parseInt 는 Int 값이 아닌 "number" 값으로 바꿔준다. html 에서는 int 가 아닌 number라 부르는듯함
+        const person = parseInt(prompt('몇 명이 참가하나요?'), 10)
+        console.log('Person :',person);
+        const YON = confirm(person + '명 맞나요?');
+        console.log(typeof person);
+
+        // 만약 1,3만 지정해서 선택하고싶다면, 잔머리 굴리지 말고 초보자 티 내면서 클래스를 확장하자
+        document.querySelectorAll('.target');
+        
+        // 쿼리셀렉터의 div span 사이의 띄어쓰기는 div 의 자손 span 을 선택하라 라는 의미를 가짐
+        // 자식과 자손의 차이는 div 안의 직속 하위태그가 자식 div 안의 몇단계를 거치든 하위태그인 것이 자손
+        const $span = document.querySelector('div span');
+        console.log($span)
+
+    </script>
+    
+</body>
+</html>

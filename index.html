@@ -9,6 +9,41 @@
     <!-- 웹의 인코딩방식 지정 meta -->
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
+    <script>
+        var Links = {
+            setColor : function(color){
+                var alist = document.querySelectorAll('a')
+                var i = 0
+                while(i<alist.length){
+                        alist[i].style.color = color;
+                        i+=1
+                    }
+            }
+        }
+        var Body = {
+            setColor:function (color){
+                document.querySelector('body').style.color = color;
+            },
+            setBackgroundColor:function(color){
+                document.querySelector('body').style.backgroundColor = color;
+            }
+        }
+        function NightModeToggle(self){
+            var target = document.querySelector('body').style
+            if(self.value === '야간모드'){
+                Body.setBackgroundColor('black')
+                Body.setColor('yellow')
+                self.value = '주간모드'
+                Links.setColor('powderblue')
+            }
+            else{
+                Body.setBackgroundColor('white')
+                Body.setColor('black')
+                self.value = '야간모드'
+                Links.setColor('Blue')
+            }
+        }
+    </script>
 </head>
 
 <!-- 
@@ -25,7 +60,10 @@
     <p>
         <h1><a href='index.html' style="color:blue;">WEB</h1></a>
     <div id="grid">
-        <div>
+        <div id='channel'>
+            
+            <input type="button" value="야간모드" onclick="NightModeToggle(this)">
+
             <ol>
                 <a href="https://the-nest-of-cskim.tistory.com/" target="_blank" title="CSKIM의 블로그">CSKIM 은 누구인가</a>
                 <!-- li 태그는 자식태그로서 ul 태그를 꼭 가지고있음. -->
