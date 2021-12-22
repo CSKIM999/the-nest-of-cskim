@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSKIM 의 무친 쿵쿵따</title>
+</head>
+
+<body>
+    <div>***! <span id='order'>1 번째 참가자님</span> !***</div>
+    <div> {{{{ <span id='KKD'>**!닉네임을 입력해주세요!**</span> }}}}</div>
+    <input type="text">
+    <button class="enter"> 입력 </button>
+    <script>
+        let word
+        let newWord
+        const $KKD = document.querySelector('#KKD')
+        const $input = document.querySelector('input')
+        const $button = document.querySelector('button')
+        const $order = document.querySelector('#order')
+        const $span = document.querySelector('div span')
+        const person = Number(prompt('참가 인원을 알려주세요'))
+        console.log('Person : ', person)
+        let Nickname = []
+        const onInput = (event) => {
+            newWord = event.target.value
+            console.log(newWord)
+        }
+        // const GetNickname = (event) => {
+        //     newWord = event.target.value
+        // }
+        let index = 2
+        $input.addEventListener('input', onInput)
+        $button.addEventListener('click', function () {
+            if (Nickname.length < person - 1) {
+                Nickname.push(newWord)
+                $order.textContent = index++ + ' 번째 참가자님'
+                $input.value = ''
+                $input.focus()
+            } else if (Nickname.length === person - 1) {
+                Nickname.push(newWord)
+                $input.value = ''
+                $input.focus()
+                $order.textContent = Nickname[0] + ' 참가자님'
+                $KKD.textContent = '제시어를 입력해주세요!'
+                index = 0
+            } else {
+                if ((!word || word[word.length - 1] === newWord[0]) && (newWord.length > 0 && newWord.length === 3)) {
+                    if (++index === Nickname.length) {
+                        index = 0
+                    }
+                    word = newWord
+                    $order.textContent = Nickname[index] + ' 참가자님'
+                    $KKD.textContent = '님 제시어 : '+ word
+                    $input.value = ''
+                    $input.focus()
+
+                } else {
+                    alert('올바르지 않은 단어입니다\n 다시 입력해주세요')
+                }
+
+
+            }
+        })
+        if (Nickname.length === 3) {
+            console.log('collect')
+        }
+
+    </script>
+</body>
+
+</html>

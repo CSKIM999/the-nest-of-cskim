@@ -31,7 +31,6 @@
         const onClick = function () {
             console.log('버튼클릭');
             if (!word || (word[word.length - 1] === newWord[0])) {
-                //제시어가 비어있다면
                 word = newWord;
                 $word.textContent = word;
                 const order = Number($order.textContent);
@@ -48,6 +47,7 @@
         };
         const onInput = (event) => {
             newWord = event.target.value;
+            console.log(newWord)
         };
         $input.addEventListener('input', onInput);
         $button.addEventListener('click', onClick);
