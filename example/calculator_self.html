@@ -64,7 +64,7 @@
         let numTwo = ''
         const $operator = document.querySelector('#operator')
         const $result = document.querySelector('#result')
-        const onClickNumber = (event) => { // 함수 안에 return 을 생략하고 => () => 를 써서 실행시킬 수 있음, 그리고 함수가 함수를 return 하는 함수를 "고차함수(high order function)" 라고 칭한다.
+        const onClickNumber = (event) => { 
             if (!operator) {
                 numOne += event.target.textContent
                 $result.value += event.target.textContent
@@ -74,20 +74,9 @@
                 $result.value = ''
             }
             $result.value += event.target.textContent
-            numTwo += event.target.textContent // 버튼에 사용되는데, 해당 버튼에는 숫자textContnet가 써있음 따라서 그것을 가져온다는 뜻
+            numTwo += event.target.textContent 
         }
 
-
-        // const onClickNumber = (number) => {
-        //     if (operator) {
-        //         numTwo += number
-        //     } else {
-        //         numOne += number
-        //     }
-        //     $result.value += number
-        // }
-        // 아래 코드에서는 함수자리에 oCN 함수가 들어가나, html 에서 함수는 기본적으로 return undefined 가 주어진다 따라서 현재 함수자리에 oCN('0') 이 아닌 undefined 가 들어갔다고 처리될 것.
-        // document.querySelector('#num-0').addEventListener('click',onClickNumber('0'))
 
         document.querySelector('#num-0').addEventListener('click', onClickNumber)
         document.querySelector('#num-1').addEventListener('click', onClickNumber)
@@ -99,9 +88,33 @@
         document.querySelector('#num-7').addEventListener('click', onClickNumber)
         document.querySelector('#num-8').addEventListener('click', onClickNumber)
         document.querySelector('#num-9').addEventListener('click', onClickNumber)
-
+        
         const onClickOperator = (op) => () => {
             if (operator) {
+                if (numTwo) {
+                    switch (operator) {
+                    case '+':
+                        $result.value = parseInt(numOne) + parseInt(numTwo)
+                        break
+                    case '-':
+                        $result.value = parseInt(numOne) - parseInt(numTwo)
+                        break
+                    case '/':
+                        $result.value = parseInt(numOne) / parseInt(numTwo)
+                        break
+                    case '*':
+                        $result.value = parseInt(numOne) * parseInt(numTwo)
+                        break
+                    default:
+                        break
+                }
+                numOne = $result.value
+                numTwo = ''
+                operator = op
+                $operator.value = op
+                $result.value = ''
+                return
+                }
                 alert('2개항 이상의 계산은 불가합니다')
                 return
             }
@@ -110,6 +123,10 @@
                 $operator.value = op
                 $result.value = ''
             } else {
+                if(op === '-'){
+                    numOne += op
+                    return
+                }
                 alert('숫자를 먼저 입력해 주세요')
             }
         }
@@ -144,7 +161,7 @@
                     default:
                         break
                 }
-                numTwo = ''
+                numOne = $result.value
                 numTwo = ''
                 operator = ''
                 $operator.value = ''

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .around {
+            width: 600px;
+            height: 800px;
+            border: 4px solid rgb(4, 49, 0);
+            display: grid;
+            grid-template-columns: 300px 1fr;
+        }
+        #Theme {
+            width: 600px;
+            height: 35px;
+            font-size: 30px;
+            text-align: center;
+            border: 4px solid gray;
+            margin: 0;
+            padding-bottom: 10px;
+        }
+        #gameConsole {
+            text-align: center;
+            align-items: center;
+
+
+        }
+        /* #gameConsole input{
+            height: 20px;
+        }
+        #gameConsole button{
+            height: 25px;
+        } */
+        #info {
+            margin-left: 20px;
+            padding: 10px;
+            display: grid;
+            width: 240px;
+            grid-template-columns: 120px 1fr;
+            font-size: 30px;
+        }
+        .table {
+            display: block;
+            border-left: 2px solid;
+            height: 800px;
+        }
+        .tbody {
+            height: 700px;
+        }
+        .table th {
+            text-align: center;
+            width: 240px;
+            border-bottom: 3px solid;
+        }
+        .table td {
+            text-align: center;
+            border : 1px solid;
+        }
+    </style>
+    <title>CSKIM의 무친 숫자야구</title>
+    <script>
+
+    </script>
+</head>
+<body>
+    <h1 id="Theme"><a  style="color:rgb(4, 49, 0);">CSKIM 의 무친 숫자야구</h1></a>
+    <div class = 'around'>
+
+        <div id='gameConsole'>
+            <div id = 'info'>
+                 
+                <div id="strike">
+                    <span >0</span>  Strike
+                </div>
+                <div id="ball">
+                    <span >0</span>  Ball
+                </div>
+            </div>
+            <input type="text" id="target">
+            <button> OK </button>
+        </div>
+        <div id='hist'>
+            <table class = 'table'>
+                
+                <thead>
+                    <th>제시한 숫자</th><th>Strike&Out</th>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+                
+            </table>
+        </div>
+    </div>
+    <script>
+        const getSecret = function() {
+            const IsValidNumber = function (w2k) {
+                for (j=0;j<temp.length;j++){
+                    if (temp[j] == w2k) {
+                            return false
+                        }
+                }
+                return true
+            }
+            let temp = ''
+            for (i=0;i<4;i++) {
+                if (temp.length == 0){
+                secret = Math.floor(Math.random()*10)
+                secret = String(secret)
+                console.log('1st' + secret)
+                
+                }
+                while (temp.length>=1) {
+                    secret = Math.floor(Math.random()*10)
+                    secret = String(secret)
+                    console.log('try : ' + secret)
+                    if (IsValidNumber(secret)){
+                        break
+                    }
+                }
+
+                temp  += secret
+                
+            }
+            return secret = temp
+        }
+        const $tbody = document.querySelector('tbody')
+        const $button = document.querySelector('button')
+        const $input = document.querySelector('input')
+        const $strike = document.querySelector('#strike span')
+        const $ball = document.querySelector('#ball span')
+        
+        getSecret()
+        console.log(secret)
+        let get
+        let index = 0
+        const CheckIsNum = function (take) {
+            for (i=0;i<take.length;i++){
+                if (isNaN(parseInt(take[i]))){
+                    return false
+                }
+            }
+            for (i=0;i<4;i++){
+                for (j=0;i<4;i++){
+                    if (i==j){
+                        continue
+                    }
+                    if (take[i]==take[j]){
+                        return false
+                    }
+                }
+            }
+            return true
+        }
+        const CheckHomerun = function (num) {
+            let snb=[0,0]
+            // num = String(num)
+            for (i=0;i<4;i++){
+                if (num[i] == secret[i]){
+                    snb[0] += 1
+                }
+                    for (j=0;j<4;j++){
+                        if (num[i] == secret[j] && i!=j){
+                            snb[1] += 1
+                        }
+                    }
+                }
+            return snb
+        }
+        const onInput = (event) => {
+            get = event.target.value
+            console.log('get')
+        }
+        const appendTable = function (now,item) {
+            const newRow = $tbody.insertRow();
+            const newCell2 = newRow.insertCell(0);
+            const newCell1 = newRow.insertCell(1);
+            newCell1.innerText=item[0]+'Strike &'+item[1]+' Ball'
+            newCell2.innerText=now
+        }
+        const onButton = function() {
+            let btnsnb = []
+            if (isNaN(parseInt(get)) || get.length!=4) {
+                alert('중복되지않는 4자리 숫자를 입력해주세요')
+                $input.value = ''
+                return
+            }
+            if (CheckIsNum(get)){
+                btnsnb = CheckHomerun(get)
+                if (btnsnb[0] == 4){
+                    document.querySelector('#info').textContent = 'HOMERUN!! GAMEOVER'
+                    // document.querySelector('#strike').textContent= 'HOMERUN'
+                    // document.querySelector('#ball').textContent = 'GAMEOVER'
+                    return
+                }
+                console.log(btnsnb)
+                $strike.textContent = btnsnb[0]
+                $ball.textContent = btnsnb[1]
+                appendTable(get,btnsnb)
+            } else {
+                alert('중복되지않는 4자리 숫자를 입력해주세요')
+                $input.value = ''
+                return
+            }
+
+        }
+
+        
+        $input.addEventListener('input',onInput)
+        $button.addEventListener('click',onButton)
+
+    </script>
+        
+</body>
+</html>

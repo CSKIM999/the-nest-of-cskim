@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>JUST MEMO</title>
+</head>
+
+<body>
+    <!-- <script> -->
+
+        ==============================================
+        ## 고차함수 예제 ##
+
+        const hof = (a) => (b) => (c) => {
+            return a + (b * c)
+        }
+
+        const first = hof(3)
+        const second = first(4)
+        const third = second(5)
+        console.log(third)
+    
+        에서 콘솔값에 찍히는 값은 얼마일까 ?
+        ==============================================
+        하나하나 분해하면 다음과 같다
+        const first = (b) = (c) => {
+            return 3 + (b * c)
+        }
+        const second = (c) => {
+            return 3 + (4 * c)
+        }
+        const third = {
+            return 3 + (4 * 5)
+        }
+
+
+
+            ==============================================
+        ==============================================
+        ## 중첩 if 문 제거 ##
+        1. 중첩 if 문 이후 나오는 공통절차를 각 분기점 내부에 넣기
+        2. 분기점에서 짧은 절차부터 실행하도록 if 문 작성
+        3. 짧은 절차가 끝나면 return 이나 break 로 중단한다
+        4. else 를 제거한다
+        ## 예제 ##
+        function test() {
+            let result = ''
+            if (a) {
+                if (!b) {
+                    result = 'c'
+                }
+            } else {
+                    result 'a'
+            }
+            result += 'b'
+            return result
+        }
+        ==============================================
+        function test() {
+            let result = ''
+            if (a) {
+                if (!b) {
+                    result = 'c'
+                }
+            } else {
+                    result 'a'
+            }
+            result += 'b'  // <= if 문 이후에 나오는 공통절차. 이 두 줄의 코드를 if,else 문 내부에 넣자
+            return result   //
+        }
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        function test() {
+            let result = ''
+            if (a) {
+                if (!b) {
+                    result = 'c'
+                    result += 'b'
+                }
+                result += 'b'
+                return result
+            } else {
+                result 'a'
+                result += 'b' 
+                return result
+            }
+        }
+        if,else 중에서 else 문이 조금더 짧다. 짧은 코드를 위로 올려 if 로 나누어준다
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        function test() {
+            let result = ''
+            if (!a) {
+                result 'a'
+                result += 'b' 
+                return result
+            } //else{} 여기에 위치하던 else 를 지워주면 2개의 중첩 if 문이 분리된다.
+            if (!b) {
+                    result = 'c'
+                }
+                result += 'b'
+                return result
+            }
+        
+
+
+
+    // </script>
+
+</body>
+
+</html>

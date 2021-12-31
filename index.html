@@ -1,6 +1,7 @@
 <html>
 
 <!-- 선언문 head 태그, 본문 body 태그 -->
+
 <head>
     <!-- 웹의 표시창에 뜨는 title -->
     <title>
@@ -11,32 +12,32 @@
     <link rel="stylesheet" href="style.css">
     <script>
         var Links = {
-            setColor : function(color){
+            setColor: function (color) {
                 var alist = document.querySelectorAll('a')
                 var i = 0
-                while(i<alist.length){
-                        alist[i].style.color = color;
-                        i+=1
-                    }
+                while (i < alist.length) {
+                    alist[i].style.color = color;
+                    i += 1
+                }
             }
         }
         var Body = {
-            setColor:function (color){
+            setColor: function (color) {
                 document.querySelector('body').style.color = color;
             },
-            setBackgroundColor:function(color){
+            setBackgroundColor: function (color) {
                 document.querySelector('body').style.backgroundColor = color;
             }
         }
-        function NightModeToggle(self){
+        function NightModeToggle(self) {
             var target = document.querySelector('body').style
-            if(self.value === '야간모드'){
+            if (self.value === '야간모드') {
                 Body.setBackgroundColor('black')
                 Body.setColor('yellow')
                 self.value = '주간모드'
                 Links.setColor('powderblue')
             }
-            else{
+            else {
                 Body.setBackgroundColor('white')
                 Body.setColor('black')
                 self.value = '야간모드'
@@ -58,20 +59,20 @@
 
 <body>
     <p>
-        <h1><a href='index.html' style="color:blue;">WEB</h1></a>
+    <h1><a href='index.html' style="color:blue;">WEB</h1></a>
     <div id="grid">
         <div id='channel'>
-            
+
             <input type="button" value="야간모드" onclick="NightModeToggle(this)">
 
             <ol>
                 <a href="https://the-nest-of-cskim.tistory.com/" target="_blank" title="CSKIM의 블로그">CSKIM 은 누구인가</a>
                 <!-- li 태그는 자식태그로서 ul 태그를 꼭 가지고있음. -->
                 <!-- ol== ordered list &&& ul == unordered list -->
-                <li><a href='1.html' >HTML</li></a>
-                <li><a href='2.html' >CSS</li></a>
-                <li><a href='3.html' >JAVASCRIPT</li></a>
-            <!-- <ol>
+                <li><a href='1.html'>HTML</li></a>
+                <li><a href='2.html'>CSS</li></a>
+                <li><a href='3.html'>JAVASCRIPT</li></a>
+                <!-- <ol>
                 <h1><a href='index.html'><font color ='red'>WEB</font></h1></a>
                 <li><a href='1.html' ><font color ='red'>HTML</font></li></a>
                 <li><a href='2.html' ><font color ='red'>CSS</font></li></a>
@@ -86,14 +87,21 @@
                 <li>bbinyang</li>
                 <li>juejue</li>
             </ol>
-        </div> 
+        </div>
         <div id="article">
             <h2>"꾸준히, 열심히 계속해서 노력하면 언젠가는 빛을 볼 거야!"</h2>
-            <p style="margin-top: 45px;">어디선가 본 듯한 이야기 아닌가? 우리는 자신의 행동을 누구에게 보여주기 위해서, 대가를 바라고 행하는 것을 무의식적으로 멀리하고 아무도 몰라주지만 음지에서 최선을 다하는 것을 가치 있게 여긴다.</p>
+            <p style="margin-top: 45px;">어디선가 본 듯한 이야기 아닌가? 우리는 자신의 행동을 누구에게 보여주기 위해서, 대가를 바라고 행하는 것을 무의식적으로 멀리하고 아무도
+                몰라주지만 음지에서 최선을 다하는 것을 가치 있게 여긴다.</p>
             <!--  src 와 width 의 위치는 중요하지 않음 바뀌어도 됨 -->
             <img src='unnamed.jpg' width="33%">
-            <p style="margin-top : 80px;">하지만 과연 그 행동이 무엇에 근거하여 가치 있는지는 생각해보지 않는다.<p></p>분명히 보여주기 위해서, 대가만을 위해서 행하는 노력은 바람직하지 않다. 특히나 나를 어필하는 이력이나 공부들이 그럴 것이다.<p>그런 노력은 평가자에게 나의 무능력을 감추기 위해 행하는 <strong>'사기'</strong>에 불과하다. 하지만, 동시에 자신의 노력을 누군가는 알아봐 줄 것이라고 믿고 대가 없이, 아무런 이력도, 기록도 남기지 않는 것 또한 '미련함'이라고 생각한다. 물론 그 경계를 정의하는 것은 너무나도 어려운 일이다. 이 글을 쓰면서 그 경계는 어디인가에 대해 다시 한번 생각해보아도 너무나도 애매하고 어렵다. 그 경계는 개개인이 정하고 판단하는 것이니 생각하기 나름일 것이다. 누군가는 여전히 나와는 반대되는 생각을 가지고 있을 수도 있고, 반대로 앞서 말한 '사기' 또한 개인의 노력이라고 생각하는 사람도 있을 것이다. 모두 존중하는 생각들이지만 나의 생각은 위와 같다.
+            <p style="margin-top : 80px;">하지만 과연 그 행동이 무엇에 근거하여 가치 있는지는 생각해보지 않는다.
+            <p></p>분명히 보여주기 위해서, 대가만을 위해서 행하는 노력은 바람직하지 않다. 특히나 나를 어필하는 이력이나 공부들이 그럴 것이다.<p>그런 노력은 평가자에게 나의 무능력을 감추기 위해
+                행하는 <strong>'사기'</strong>에 불과하다. 하지만, 동시에 자신의 노력을 누군가는 알아봐 줄 것이라고 믿고 대가 없이, 아무런 이력도, 기록도 남기지 않는 것 또한
+                '미련함'이라고 생각한다. 물론 그 경계를 정의하는 것은 너무나도 어려운 일이다. 이 글을 쓰면서 그 경계는 어디인가에 대해 다시 한번 생각해보아도 너무나도 애매하고 어렵다. 그 경계는
+                개개인이 정하고 판단하는 것이니 생각하기 나름일 것이다. 누군가는 여전히 나와는 반대되는 생각을 가지고 있을 수도 있고, 반대로 앞서 말한 '사기' 또한 개인의 노력이라고 생각하는 사람도
+                있을 것이다. 모두 존중하는 생각들이지만 나의 생각은 위와 같다.
         </div>
     </div>
 </body>
+
 </html>
