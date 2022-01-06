@@ -1,0 +1,69 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>가위바위보</title>
+    <style>
+        #computer {
+            width: 145px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="computer"></div>
+    <div>
+        <button id="scissor" class="btn">가위</button>
+        <button id="rock" class="btn">바위</button>
+        <button id="paper" class="btn">보</button>
+    </div>
+    <div id="score">0</div>
+    <script>
+        const $computer = document.querySelector('#computer');
+        const $score = document.querySelector('#score');
+        const $rock = document.querySelector('#rock');
+        const $scissor = document.querySelector('#scissor');
+        const $paper = document.querySelector('#paper');
+        const IMG_URL = './rsp.png';
+        const rspX = {
+            scissor : '0',
+            rock : '-220px',
+            paper : '-440px'
+        }
+        let computerChoice = 'scissor';
+        const changeComputerhand = () => {
+            if (computerChoice === 'scissor') { //가위면
+                computerChoice = 'rock';
+            } else if (computerChoice === 'rock') {
+                computerChoice = 'paper';
+            } else {
+                computerChoice = 'scissor';
+
+            }
+            // rspX.computerChoice => 'computerChoice' 가 입력되는것.
+            // 따라서 computerChoice 의 값인 'scissor' 를 넣고싶으므로 rspX[computerChoice] 를 사용
+            // 정리 => . 뒤에는 '문자열' [] 안에는 변수명
+            $computer.style.background = `url(${IMG_URL}) ${rspX[computerChoice]} 0`;
+            $computer.style.backgroundSize = 'auto 200px';
+            // setTimeout(changeComputerhand,50) 을 통해 재귀시켜 set interval 을 대신할 수도 있음. 그러나 interval 이 더 쉽긴하다
+            //또한 setInterval 은 시간을 최대한 보정하려하나, setTimeout 은 전혀 신경쓰지 않음.
+        }
+        // setInterval(changeComputerhand,100); // 여기서도 함수자리이므로 changeComputerhand() 와같이 실행값을 넣지 말것
+        let intervalId = setInterval(changeComputerhand,50);
+        // 현재 클릭을 연속으로 하면 intervalId 를 덮어쓰기때문에 앞의 interval 들은 멈춤없이 계속 돌악가게됨
+        const clickButton = () => {
+            clearInterval(intervalId);
+            // 점수계산 & 화면표시
+            setTimeout(() => {
+                clearInterval(intervalId);
+                intervalId = setInterval(changeComputerhand,50);
+            },1000);
+        };
+        $rock.addEventListener('click',clickButton)
+        $scissor.addEventListener('click',clickButton)
+        $paper.addEventListener('click',clickButton)
+    </script>
+</body>
+
+</html>
