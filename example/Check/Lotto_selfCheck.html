@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+
+    <title>LOTTO</title>
+    <style>
+        .ball {
+            display: inline-block;
+            border: 1px solid black;
+            border-radius: 20px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 20px;
+            text-align: center;
+            margin-right: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1><div id = 'result'> 오늘의 추천 LOTTO NUMBER : </div></h1>
+    <h1><div id="bonus"> BONUS NUMBER : </div></h1>
+    <script>
+        const array = Array(45).fill().map((v,i) => i+1)
+        const shuffle = []
+        const $bonus = document.querySelector('#bonus');
+        const $result = document.querySelector('#result');
+
+        while (array.length>0) {
+            const random = Math.floor(Math.random()*(array.length));
+            const pick = array.splice(random,1);
+            shuffle.push(pick[0])
+        }
+        console.log(shuffle)
+        const winningNum = shuffle.slice(0,6).sort((a,b)=>a-b)
+        const bonus = shuffle[6]
+        const select = (number,$parent) => {
+            const $ball = document.createElement('div')
+            $ball.className = 'ball';
+            $ball.id = Math.floor(number/10)
+            $ball.textContent = number
+            const Colorize = (Bcolor,Fcolor) =>{
+                $ball.style.backgroundColor = Bcolor
+                $ball.style.color = Fcolor
+            }
+            console.log(number)
+            if (number<10) {
+                Colorize('Red','White')
+            } 
+            if (10<=number && number<20) {
+                Colorize('Orange','Black')
+            } 
+            if (20<=number && number<30) {
+                Colorize('Yellow','Black')
+            }
+            if (30<=number && number<40) {
+                Colorize('blue','White')
+            }
+            if (40<number) {
+                Colorize('Green','White')
+            }
+            $parent.appendChild($ball)
+        }
+
+
+        for (let i = 0 ;i<winningNum.length;i++) {
+            setTimeout(() => {
+                console.log(winningNum[i], i);
+                select(winningNum[i], $result);
+            }, (i + 1) * 500);
+        }
+        setTimeout(() => {
+            select(bonus,$bonus)
+        },3500);
+    </script>
+</body>
+</html>

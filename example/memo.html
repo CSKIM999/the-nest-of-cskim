@@ -103,8 +103,46 @@
             }
         
 
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        왜 var 이 아닌 let 을 사용하는가?
+        var 는 함수스코프, let 은 블록스코프를 가진다.
+        function b() {
+            var a = 1;
+        }
+        console.log(a);
+        를 실행하더라도 a is not defined 에러가 뜬다.
+        왜냐, a 라는 변수는 b 라는 함수안에 선언된 변수이므로, 함수 밖에서는 접근 불가능
 
+        하지만,
+        if (true) {
+            var a = 1;
+        }
+        console.log(a);
+        를 실행하면 1 이 잘 출력되나 let 으로 바꾸면 not defined 에러가 발생한다.
+        왜냐, var 는 "함수"스코프 이므로 조건문 if 에는 발동하지 않으나, let 은 "블록" 스코프이므로 if 문의 블록 안에서만 작동된다.
+        
+        for ( >!var!< i = 0; i < winBalls.length; i++) {
+            setTimeout(() => {
+                console.log(winBalls[i], i);
+                drawBall(winBalls[i], $result);
+            }, (i + 1) * 1000);
+        }
+        위 코드는 로또 추첨기 내의 로또번호 출력부 함수이다.
+        >!!< 안에 let 과 var  어느것이 위치하느냐에 따라 값은 변한다
+        var 의 경우 // for 문 안의 인덱스 처리부는 동기, setTimeout 비동기 함수이므로 이미 반복문이 다 실행되어 i 는 6이 된 상태에서 1초가 지나 setTimeout 함수가 실행된다.
+        let 의 경우 // 블록 스코프이므로, 블록 외부에서 접근이 제한되나 반대로 블록 내부에서 외부로 접근또한 제한된다. 따라서 원래 원하던 기능대로 작동시키기 위해선 let 을 사용해야함
 
+        클로저 -> 함수와 함수 바깥에 있는 변수와의 관계
+        var 을 사용하더라도 문제없이 구동하기 위해선 클로저를 사용해야함. 
+        for ( >!var!< i = 0; i < winBalls.length; i++) {
+            (function(j){
+            setTimeout(() => {
+                console.log(winBalls[i], i);
+                drawBall(winBalls[i], $result);
+            }, (i + 1) * 1000);
+            })(i);
+        }
+        위 코드와 같이 매 인덱스마다 해당 인덱스를 사용하는 함수를 만들어주어 (클로저를 사용하여) 해결
     // </script>
 
 </body>

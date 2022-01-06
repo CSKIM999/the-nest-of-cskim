@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSKIM 의 무친 LOTTO</title>
+    <style>
+        .ball {
+            display: inline-block;
+            border: 1px solid black;
+            border-radius: 20px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 20px;
+            text-align: center;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        <div id='result'> 추첨 결과는??? </div>
+    </h1>
+    <h1>
+        <div id='bonus'> 보너스 : </div>
+    </h1>
+
+    <div id='Algo_explain'>
+
+        <!-- // 무작위 7개를 뽑는 방법도 있지만, 이번엔 무작위 셔플 후 앞 7개를 추출함
+        // 현재 피셔-예이츠 알고리즘과 커누스 셔플이 사용되나, 오늘은 비교적 완벽한 "셔플" 을 보장하는 피셔-예이츠 셔플 알고리즘을 사용하고자 함
+    
+        // 오늘 사용할 랜덤셔플 알고리즘은 피셔-예이츠 셔플 알고리즘 -->
+        <h3>
+            셔플 알고리즘 : 피셔 예이츠 알고리즘<br>
+        </h3>
+        1 >> 1~n 까지의 숫자를 쓴다<br>
+        2 >> 지워지지 않은 숫자 중 random number k를 고른다<br>
+        3 >> 남은 숫자의 개수를 세고, 지워지지 않은 숫자 k를 지우고, 그 숫자를 별도의 list에 쓴다. <br>
+        4 >> 모든 숫자가 지워질 때까지 2번을 반복<br>
+        5 >> 3번에서 쓴 별도의 list가 최종 random permutation 결과이다. <br>
+
+        섞은 결과가 가장 셔플에 적합하다고 평가됨<br>
+        시간복잡도 : O(n^2) <br>
+        >>> 매 반복마다 남은 숫자를 세는 과정 <br>
+        >>> 램덤 숫자 선택을 리스트 요소 갯수에 비례해야함 <br>
+        <!-- 
+        splice 는 원본을 잘라냄 & slice 는 원본을 복사함
+        arr.sort((a,b) => a[0].charCodeAt() - b[0]charCodeAt()) <= 1번째 문자의 code를 불러와 정렬
+        arr.sort((a,b) => a.localeCompare(b)) <= 오름차 사전순 정렬
+        arr.sort((a,b) => b.localeCompare(a)) <= 내림차 사전순 정렬 
+        setTimeout(() => 구동부,시간설정[밀리초단위])
+        setTimeout(() => console.log('hello'), 3000) <- 3000밀리초(3초) 뒤에 hello 가 콘솔로그에 뜰 것
+
+        -->
+
+    </div>
+
+    <script>
+        const candidate = Array(45).fill().map((v, i) => i + 1)
+        const shuffle = [];
+        while (candidate.length > 0) {
+            const random = Math.floor(Math.random() * (candidate.length));
+            // splice => return [element]
+            // 따라서 value 가 spliceArray[0] 을 받는것
+            const spliceArray = candidate.splice(random, 1);
+            const value = spliceArray[0];
+            shuffle.push(value)
+        }
+        console.log(shuffle);
+        const winBalls = shuffle.slice(0, 6).sort((a, b) => a - b);
+        const bonus = shuffle[6];
+        const $result = document.querySelector('#result');
+        const $bonus = document.querySelector('#bonus');
+        const drawBall = (number, $parent) => {
+            const $ball = document.createElement('div');
+            $ball.className = 'ball';
+            $ball.textContent = number;
+            $parent.appendChild($ball)
+        }
+        for ( let i = 0; i < winBalls.length; i++) {
+            setTimeout(() => {
+                console.log(winBalls[i], i);
+                drawBall(winBalls[i], $result);
+            }, (i + 1) * 1000);
+        }
+
+        setTimeout(() => {
+            drawBall(bonus,$bonus)
+        },7000);
+
+    </script>
+</body>
+
+</html>

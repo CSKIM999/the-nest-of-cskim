@@ -107,13 +107,11 @@
                 if (temp.length == 0){
                 secret = Math.floor(Math.random()*10)
                 secret = String(secret)
-                console.log('1st' + secret)
                 
                 }
                 while (temp.length>=1) {
                     secret = Math.floor(Math.random()*10)
                     secret = String(secret)
-                    console.log('try : ' + secret)
                     if (IsValidNumber(secret)){
                         break
                     }
@@ -169,7 +167,6 @@
         }
         const onInput = (event) => {
             get = event.target.value
-            console.log('get')
         }
         const appendTable = function (now,item) {
             const newRow = $tbody.insertRow();

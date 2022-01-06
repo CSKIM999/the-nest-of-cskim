@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MSY</title>
+</head>
+
+<body>
+    <h1>JAVASCRIPT</h1>
+    <script>
+        const answer = [3, 1, 4, 6];
+        const value = '3214';
+        let strike = 0;
+        let ball = 0;
+        // for each 는 answer 각각의 원소에 해당 함수를 실행시킨다.
+        answer.forEach((element, i) => {
+            const index = value.indexOf(element);
+            if (index > -1) {
+                if (index === i) {
+                    strike += 1;
+                } else {
+                    ball += 1;
+                }
+            }
+        })
+        document.write(strike + 'S & ' + ball + 'B')
+
+        const array = [1, 2, 3, 4];
+        const result = []
+
+        // map 은 하나씩 꺼내와서 mapping 해주는것
+        // 중요한건 map 하고나면 array 에는 영향을 주지 않고 새로운 temp 배열이 생성됨
+        array.map((element, i) => {
+            return element * 2;
+        })
+
+        Array(9) // 길이가 9 인 비어있는 배열
+        Array(9).fill() // undefined 가 9개인 배열
+        Array(9).fill(0) // 0 이 9개인 배열
+        Array(9).fill().map((el,idx) =>{ // undifined 를 idx+1 로 mapping 해준다는것
+            return idx+1
+        }) // [1,2,3,4,5,6,7,8,9] 반환받음
+
+
+    </script>
+
+</body>
+
+</html>
