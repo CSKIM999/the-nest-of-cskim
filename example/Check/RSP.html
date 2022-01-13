@@ -52,13 +52,20 @@
         // setInterval(changeComputerhand,100); // 여기서도 함수자리이므로 changeComputerhand() 와같이 실행값을 넣지 말것
         let intervalId = setInterval(changeComputerhand,50);
         // 현재 클릭을 연속으로 하면 intervalId 를 덮어쓰기때문에 앞의 interval 들은 멈춤없이 계속 돌악가게됨
+        let clickable = true;
         const clickButton = () => {
-            clearInterval(intervalId);
-            // 점수계산 & 화면표시
-            setTimeout(() => {
+            if (clickable) {
                 clearInterval(intervalId);
-                intervalId = setInterval(changeComputerhand,50);
-            },1000);
+                // 점수계산 & 화면표시
+                clickable = false;
+                setTimeout(() => {
+                    clickable = true;
+                    clearInterval(intervalId);
+                    intervalId = setInterval(changeComputerhand,50);
+                    console.log('CLICK')
+                },1000);
+
+            }
         };
         $rock.addEventListener('click',clickButton)
         $scissor.addEventListener('click',clickButton)

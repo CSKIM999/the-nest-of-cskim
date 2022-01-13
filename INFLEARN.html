@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <script>
+        //////////////실행 컨텍스트 ///////
+        // var a = 1;
+        // function outer() {
+        //     console.log(a); // a = 1
+        //     function inner() {
+        //         console.log(a); // a == undifined <<< 매우중요
+        //         var a = 3;
+        //     }
+
+        //     inner();
+
+        //     console.log(a); // a = 1
+
+        // }
+        // outer();
+        // console.log(a); //a = 1
+
+
+
+        ///////////////this/////////////////
+
+        // var callback = function() {
+        //     console.dir(this);
+        // };
+        // var obj = {
+        //     a: 1,
+        //     b: function(cb) {
+        //         cb(); // console : Window
+        //         cb.call(this);// console : Object
+        //         //함수의 this 는 대부분 전역객체 Window 를 this 로 가지지만, call,bind등을 통해 this 를 지정할 수 있다.
+        //     }
+        // };
+        // obj.b(callback)
+        
+        // document.body.innerHTML += '<div id ="a">클릭하세요</div>';
+        // var obj = {a:1};
+        // // document.getElementById('a').addEventListener('click', function() {
+        // //     console.dir(this);
+        // // }.bind(obj));
+        // document.getElementById('a').addEventListener('click', function() {
+        //     console.dir(this);
+        // });
+            
+
+        
+        /////////////콜백함수 /////////////
+
+        // var arr = [1,2,3,4,5];
+        // var entries = [];
+        // arr.forEach(function(v,i) {
+        //     entries.push([i,v,this[i]]);
+        // },[10,20,30,40,50]);
+        // console.log(entries); // << 출력결과 [[0,1,10],[1,2,20],...]
+        // // forEach의 첫번째 인자는 메서드, 두번째 인자은 thisArg 를 받는다는것.
+        // // 여기서 두번째 인자 thisArg 자리는 생략이 가능
+        
+
+        // //>> 콜백함수는 이름 그대로 "함수" 이다!! << 
+        // var arr = [1,2,3,4,5];
+        // var obj = {
+        //     vals:[1,2,3],
+        //     logValues:function(v,i) {
+        //         if (this.vals) {
+        //             console.log(this.vals,v,i);
+        //         } else {
+        //             console.log(this,v,i);
+        //         }
+        //     }
+        // };
+        // obj.logValues(1,2); // 여기서의 this 는 obj 일 것임
+        // // 따라서 line 66 에서 출력은 [1,2,3] 1 2 가 출력될것.
+        // arr.forEach(obj.logValues) // 여기서 obj.logValues 는 콜백함수로 넘긴것
+        // // 따라서 . 앞의 obj 가 this 가 되는가??
+        // // >>> NO! obj.logValues 는 단순히 콜백함수로 전달한 것.
+        // // 메서드일 때 .앞이 this 가 됨. 이 경우에서는 forEach 의 룰에 따라 this 가 지정된다는 뜻.
+        
+        // // ++ 그렇다면 line 75 에서 obj 를 this 로 넘기고싶다면? bind 사용!
+        // arr.forEach(obj.logValues.bind(obj))
+        
+
+
+        ///////////// 클로저 closure ////////////
+        
+
+
+
+    </script>
+</body>
+</html>
