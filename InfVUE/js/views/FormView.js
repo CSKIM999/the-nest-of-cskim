@@ -35,6 +35,7 @@ FormView.onKeyup = function(e) { //키 입력부
 FormView.onClickReset = function() {
     this.emit('@reset')    //실제로 삭제할 필요 없고 C 에 reset 이라는 이벤트를 전달하기만 하면 됨. emit 이 그 event 를 전달해주는 메서드
     this.showResetBtn(false) // 리셋버튼을 클릭했으니 리셋버튼 false 로 만들어서 안보이게하기
+    
 }
 
 

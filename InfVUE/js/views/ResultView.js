@@ -18,8 +18,27 @@ ResultView.render = function(data = []) {
     this.show()
 }
 
-ResultView.getSearchResultsHtml = function(data) { // line 13 에서 data.length 가 존재하므로 이곳으로 오게 됨
-    debugger
+
+// ResultView.renderReset = function(data = []) {
+//     console.log(tag,'renderReset()',data)
+//     this.hide()
+// } 굳이 이렇게 말고 바로 hide 도 가능
+
+
+
+ResultView.getSearchResultsHtml = function(data) { // line 17 에서 data.length 가 존재하므로 이곳으로 오게 됨
+    return data.reduce((html, item) => {
+        html += this.getSearchItemHtml(item)
+        return html
+    }, '<ul>') + '</ul>'
 }
+
+ResultView.getSearchItemHtml = function(item) {
+    return `<li>
+    <img src="${item.image}">
+    <p>${item.name}</p>
+    </li>`
+}
+
 
 export default ResultView
