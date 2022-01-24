@@ -15,10 +15,11 @@ TabView.bindClick = function() {
     })
 }
 
-
 TabView.setActiveTab = function (tabName) {
+    console.log(tag,'setActiveTab()',tabName)
+    this.show()
     Array.from(this.el.querySelectorAll('li')).forEach(li =>{ // querySelector 말고 querySelectorAll 을 써야 해당 요소 전부를 바꿔줄 수 있음. li 태그가 2개니까!
-        li.className = li.innerHTML === tabName? 'active' : ''
+        li.className = li.innerHTML === tabName ? 'active' : ''
     })
 }
 
