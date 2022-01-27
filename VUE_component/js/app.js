@@ -2,6 +2,8 @@ import SearchModel from './models/SearchModel.js'
 import KeywordModel from './models/KeywordModel.js'
 import HistoryModel from './models/HistoryModel.js'
 
+import FormComponent from './component/FormComponent.js'
+
 
 new Vue({ // vue 인스턴스가 html의 어느부분에 마운팅 될것인지 설정하는 설정부
 
@@ -18,6 +20,11 @@ new Vue({ // vue 인스턴스가 html의 어느부분에 마운팅 될것인지 
 
   },
   
+  components : {
+    'search-form' : FormComponent 
+    
+  },
+
   created() { // Vue 인스턴스가 생성될 때 호출되는 함수
     this.selectedTab = this.tabs[0]
     this.fetchKeyword()

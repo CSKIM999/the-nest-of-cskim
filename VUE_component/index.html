@@ -14,16 +14,8 @@
         </header>
         
         <div class="container">
-            <!-- v-on 은 DOM 에서 발생하는 이벤트를listen 하는 역할 -->
-            <!-- .prevent 를 뒤에 붙여 줄 경우 JS 에서 preventDefault 와 같은 역할을 수행한다 -->
-            <!-- 여기서 preventDefault 는 화면 갱신을 막아주는 역할이었음 -->
-            <form v-on:submit.prevent='onSubmit'>
-
-                <!-- Vue.js 에서 v-model 은 입력데이터와 실제 데이터간의 (양방향)바인딩 역할 -->
-                <input v-on:keyup='onKeyup'type="text" v-model='query' placeholder="검색어를 입력하세요!" autofocus> 
-                <button v-on:click='onReset' v-show  = 'query.length' type="reset" class="btn-reset"></button>
-
-            </form>
+            <search-form></search-form>
+            
             <div v-if="submitted">
                 <div v-if="searchResult.length">
                     <ul>
@@ -81,3 +73,18 @@
     <script type="module" src="./js/app.js"></script>
 </body>
 </html>
+
+
+<!-- 여기서 id 를 #search-form으로 설정해주면 FormComponent 의 template 와 바인딩됨 -->
+<template id ="search-form">
+    <!-- v-on 은 DOM 에서 발생하는 이벤트를listen 하는 역할 -->
+    <!-- .prevent 를 뒤에 붙여 줄 경우 JS 에서 preventDefault 와 같은 역할을 수행한다 -->
+    <!-- 여기서 preventDefault 는 화면 갱신을 막아주는 역할이었음 -->
+    <form v-on:submit.prevent='onSubmit'>
+
+        <!-- Vue.js 에서 v-model 은 입력데이터와 실제 데이터간의 (양방향)바인딩 역할 -->
+        <input v-on:keyup='onKeyup'type="text" v-model='query' placeholder="검색어를 입력하세요!" autofocus> 
+        <button v-on:click='onReset' v-show  = 'query.length' type="reset" class="btn-reset"></button>
+
+    </form>
+</template>
