@@ -1,41 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MVC with Vanilla.JS</title>
-    <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVC with Vanilla.JS</title>
+  <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
-    <div>
-        <header>
-            <h2 class="container"> 검색 </h2>
-        </header>
+  <div>
+    <header>
+      <h2 class="container"> 검색 </h2>
+    </header>
 
-        <div class="container">
-            <form>
-                <input type="text" placeholder="검색어를 입력하세요!" autofocus>
-                <button type="reset" class="btn-reset"></button>
-            </form>
+    <div class="container">
+      <form>
+        <input type="text" placeholder="검색어를 입력하세요!" autofocus>
+        <button type="reset" class="btn-reset"></button>
+      </form>
 
-            <!-- form 과는 다르게 검색결과는 동적요소 -->
-            <div class="content">
-                <ul id='tabs' class = 'tabs'>
-                    <li>추천 검색어</li>
-                    <li>최근 검색어</li>
-                </ul>
-                <div id = 'search-keyword'></div>
-                <div id = 'search-history'></div>
-                <div id="search-result"></div>
+      <!-- form 과는 다르게 검색결과는 동적요소 -->
+      <div class="content">
+        <ul id='tabs' class='tabs'>
+          <li>추천 검색어</li>
+          <li>최근 검색어</li>
+        </ul>
+        <div id='search-keyword'></div>
+        <div id='search-history'></div>
+        <div id="search-result"></div>
 
-            </div>
+      </div>
 
 
 
-        </div>
-        
     </div>
-    <script type="module" src="./js/app.js"></script>
+
+  </div>
+  <script type="module" src="./js/app.js"></script>
 </body>
+
 </html>
