@@ -1,1 +1,4 @@
 boilerplate // 프로젝트를 시작할 때 로그인창같이 자주 쓰이는 창을 언제든 불러와서 재사용 할 수 있게 만들어놓는 것
+
+npm install nodemon --save-dev 여기서 -dev 를 붙이는 이유는 로컬에서만 사용하겠다는 의미?
+따라서 package.json 에서 devdependencies 에 저장됨
