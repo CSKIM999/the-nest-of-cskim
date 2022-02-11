@@ -16,7 +16,7 @@ const userSchema = mongoose.Schema({
   },
   password: {
     type: String,
-    maxlength: 100
+    maxlength: "100"
   },
   role: {
     type: Number,
@@ -87,10 +87,10 @@ userSchema.statics.findByToken = function(token, cb){ // methods 가 아닌 stat
   // user._id + '' = token
   jwt.verify(token, 'secretToken', function(err, decoded) {
     // 유저 Id 를 이용해서 유저를 찾은 후 client 에서 가져온 token과 DB 의 token의 일치확인
-    user.findOne({"_id": decoded, "token":token, function(err,user){
+    user.findOne({"_id": decoded, "token":token }, function(err,user){
       if (err) return cb(err);
       cb(null,user)
-    }})
+    })
   })
 }
 

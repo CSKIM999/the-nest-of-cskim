@@ -7,7 +7,7 @@ const { User } = require('./models/User');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const auth = require('./middleware/auth')
+const {auth} = require('./middleware/auth')
 
 // bodyParser 는 Client 에서 오는 정보를 서버에서 분석해서 가져올 수 있게 해주는 것
 
@@ -64,12 +64,13 @@ app.post('/api/users/login', (req, res) => {
           .status(200)
           .json({ loginSuccess:true, userId: user._id })
         })
-
       })
     }
   })
 })
 
+
+// 인증 auth 부
 app.get('/api/users/auth', auth , (req, res) =>{
   // auth 에서 req.user 값을 넣어주었기 때문에 여기서 req.user 값을 쓸 수 있음.
   // 만약 middleware 에서 막혔다면 지금 이 코드가 작성되는곳까지 올 수 없음
@@ -86,6 +87,21 @@ app.get('/api/users/auth', auth , (req, res) =>{
   })
 
 
+})
+
+
+// 로그아웃 Route 부
+// 로그아웃하려는 User 의 DB 를 찾아서 해당 유저의 token 을 지워주기
+app.get('/api/users/logout', auth , (req, res) =>{
+  console.log('logout')
+  User.findOneAndUpdate({_id: req.user._id},
+    {token: ""},
+    (err,user) =>{
+      if (err) return res.json({seccess:false, err});
+      return res.status(200).send({
+        success:true
+      })
+    }) // get(*,auth,*) 에서 auth 를 사용했기때문에, req.user._id 사용가능
 })
 
 

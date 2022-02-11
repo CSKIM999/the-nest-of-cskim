@@ -1,13 +1,11 @@
 const {User} = require('../models/User')
 
 let auth = (req, res, next) => {
-
   // 인증처리 하는곳
-
+  
   // todo...
   // client 쿠키에서 token 가져오기
   let token = req.cookies.x_auth;
-
   // Token 복호화한 후 유저 찾기 << UserModel 에서 메서드를 만들기
   User.findByToken(token, (err,user) => {
     if (err) throw err;
