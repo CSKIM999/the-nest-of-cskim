@@ -86,7 +86,7 @@ new Vue({ // vue 인스턴스가 html의 어느부분에 마운팅 될것인지 
 
     onClickRemoveHistory(keyword) {
       HistoryModel.remove(keyword)
-      this.fetchHistory() // 이것만 작성하면 검색기록이 삭제된 후 바로 다른게 진행되버림
+      this.fetchHistory() // 이것만 작성하면 검색기록이 삭제된 후 바로 다른게 진행되버림(새로고침)
       // 그것이 바로 버블링 현상 때문. 위에서 말한 preventDefault 가 필요한 상황
       // history reset 버튼으로 이동해서 v-on:click 에 .stop 을 넣어주면 버블링을 막아줄수있음
 

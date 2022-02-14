@@ -104,5 +104,11 @@ app.get('/api/users/logout', auth , (req, res) =>{
     }) // get(*,auth,*) 에서 auth 를 사용했기때문에, req.user._id 사용가능
 })
 
+app.get('/api/hello', (req,res) => {
+  
+  
+  res.send("API 반응확인 성공!")
+})
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
