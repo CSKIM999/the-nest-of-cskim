@@ -24,7 +24,6 @@ mongoose.connect(config.mongoURI, {
   .catch(err=>console.log(err))
   app.get('/', (req,res) => res.send('Hello World! 안녕하세요! 새해 복 많이받으세요'))
 
-
   //register route 부
   app.post('/api/users/register',(req,res) => {
     // todo.. 회원가입시 필요한 정보를 client 에서 가져오면 그것들을 DB 에 넣어주기
@@ -85,15 +84,12 @@ app.get('/api/users/auth', auth , (req, res) =>{
     role: req.user.role,
     image: req.user.image
   })
-
-
 })
 
 
 // 로그아웃 Route 부
 // 로그아웃하려는 User 의 DB 를 찾아서 해당 유저의 token 을 지워주기
 app.get('/api/users/logout', auth , (req, res) =>{
-  console.log('logout')
   User.findOneAndUpdate({_id: req.user._id},
     {token: ""},
     (err,user) =>{

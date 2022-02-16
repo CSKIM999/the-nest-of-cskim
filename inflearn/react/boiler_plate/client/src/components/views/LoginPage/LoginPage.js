@@ -3,6 +3,8 @@ import Axios from 'axios'
 import {useDispatch} from 'react-redux'
 import {loginUser} from '../../../_actions/user_action'
 import { useNavigate } from "react-router-dom";
+import Auth from '../../../hoc/auth'
+
 
 function LoginPage(props) {
   const dispatch = useDispatch()
@@ -28,7 +30,7 @@ function LoginPage(props) {
       .then(response =>{
         if (response.payload.loginSuccess) {
 
-          navigate(-1);
+          navigate('/');
         } else {
           alert('LOGIN 정보를 확인해주세요')
         }
@@ -52,4 +54,4 @@ function LoginPage(props) {
   )
 }
 
-export default LoginPage
+export default Auth(LoginPage, false)

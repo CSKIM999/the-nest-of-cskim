@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
+import Auth from '../../../hoc/auth'
+
 
 function LandingPage() {
+  const navigate = useNavigate();
 
   useEffect(() =>{
     axios.get('/api/hello')
@@ -9,15 +13,26 @@ function LandingPage() {
     
   },[])
 
+  const onClickHandler = () =>{
+    axios.get('/api/users/logout')
+      .then(response => {
+        if(response.data.success) {
+          navigate('/login')
+        } else {
+          alert('로그아웃에 실패했습니다')
+        }
+      })
+  }
 
   return (
     <div style={{display:'flex', justifyContent: 'center', alignItems:'center',width:'100%',height:'100vh'}}>
-      <h2>
+      <h2>LandingPage 랜딩페이지입니다</h2>
 
-      LandingPage 랜딩페이지입니다
-      </h2>
+      <button onClick={onClickHandler}>
+        로그아웃
+      </button>
     </div>
   )
 }
 
-export default LandingPage
+export default Auth(LandingPage, null)
