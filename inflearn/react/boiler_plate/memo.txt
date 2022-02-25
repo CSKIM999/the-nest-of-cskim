@@ -12,3 +12,12 @@ store 의 state 를 변경하기 위해선 무조건 Dispatch 를 통한 Action 
 여기서 Action 은 언제나 plain object 만 받을 수 있으나,
 plain object 가 아닌 promise 혹은 Functions 형식으로 받는 경우엔 thunk 와 promise 대처를 위해
 redux-thunk 와 redux-promise 를 사용한다
+
+
+API v3 auth
+20ab2b3c2276d5f8ade35884942657f6
+
+https://api.themoviedb.org/3/movie/550?api_key=20ab2b3c2276d5f8ade35884942657f6
+
+v4 Token
+eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMGFiMmIzYzIyNzZkNWY4YWRlMzU4ODQ5NDI2NTdmNiIsInN1YiI6IjYyMGNlYzFlNWNlYTE4MDA0M2RkZTBiNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-aN5dGz9ZWc_tQ678pHIKMfWHSma9H8gUFiAWoD9fMA
