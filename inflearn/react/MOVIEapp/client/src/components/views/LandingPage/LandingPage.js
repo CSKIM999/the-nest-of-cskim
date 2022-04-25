@@ -5,34 +5,22 @@ import Auth from '../../../hoc/auth'
 
 
 function LandingPage() {
-  const navigate = useNavigate();
+  useEffect
 
-  useEffect(() =>{
-    axios.get('/api/hello')
-    .then(response => console.log(response.data))
-    
-  },[])
-
-  const onClickHandler = () =>{
-    axios.get('/api/users/logout')
-      .then(response => {
-        if(response.data.success) {
-          navigate('/login')
-        } else {
-          alert('로그아웃에 실패했습니다')
-        }
-      })
-  }
 
   return (
-    <div style={{display:'flex', justifyContent: 'center', alignItems:'center',width:'100%',height:'100vh'}}>
-      <h2>LandingPage 랜딩페이지입니다</h2>
-
-      <button onClick={onClickHandler}>
-        로그아웃
-      </button>
+    <div style={{width:'100%' , margin : '0'}}>
+      {/* MAIN IMAGE */}
+      <div style={{width:'85%', margin : '1rem auto'}}>
+        <h2>Movies By Latest</h2>
+        <hr />
+      </div>
+      <div style={{display : 'flex' , justifyContent: 'center'}}>
+        <button>Load More</button>
+      </div>
     </div>
   )
+  
 }
 
-export default Auth(LandingPage, null)
+export default LandingPage
