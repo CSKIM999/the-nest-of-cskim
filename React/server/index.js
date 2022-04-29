@@ -22,7 +22,7 @@ mongoose.connect(config.mongoURI,{}).then(() => console.log('MongoDB CONNECTED..
   .catch(err => console.log(err))
 
 
-app.get('/api/users/hello', (req,res) => {
+app.get('/api/hello', (req,res) => {
   res.send("API 반응확인 성공!")
 })
 

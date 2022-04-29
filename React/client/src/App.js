@@ -1,22 +1,28 @@
 import logo from "./logo.svg";
 import "./App.css";
+import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import LandingPage from "./components/views/LandingPage/LandingPage";
 import RegisterPage from "./components/views/RegisterPage/RegisterPage";
 import LoginPage from "./components/views/LoginPage/LoginPage";
+import Auth from "./hoc/auth";
 import NavBar from "./components/views/NavBar/NavBar";
 
 function App() {
+  const AuthLandingPage = Auth(LandingPage,null)
+  const AuthLoginPage = Auth(LoginPage,false)
+  const AuthRegisterPage = Auth(RegisterPage,false)
+
+
   return (
     <Router>
       <div>
         <hr />
-        <div>test</div>
         <Routes>
-          <Route exact path="/" element={<LandingPage />} />
-          <Route exact path="/login" element={<LoginPage />} />
-          <Route exact path="/register" element={<RegisterPage />} />
+          <Route exact path="/" element={<AuthLandingPage />} />
+          <Route exact path="/login" element={<AuthLoginPage />} />
+          <Route exact path="/register" element={<AuthRegisterPage />} />
         </Routes>
       </div>
     </Router>
