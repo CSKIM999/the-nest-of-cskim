@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import {auth} from '../_actions/user_action'
 import { useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react';
+import {auth} from '../_actions/user_action'
 
 
 export default function (SpecificComponent, option, adminRoute = null) {
@@ -16,17 +16,14 @@ export default function (SpecificComponent, option, adminRoute = null) {
         if (!response.payload.isAuth) {
           if (option) {
             navigate('/login')
-            alert('잘못 된 접근입니다')
           }
         } else {
           // with login
           if (adminRoute && !response.payload.isAdmin) {
             navigate('/')
-            alert('관리자 권한이 필요합니다')
           } else {
             if (!option) {
               navigate('/')
-              alert('이미 로그인되어있습니다')
             }
           }
         }

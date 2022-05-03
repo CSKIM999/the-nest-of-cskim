@@ -64,6 +64,7 @@ export default{
             HistoryView.show()
             HistoryView.render(data).bindRemoveBtn() // render 함수가 호출되어야 HV.render(data) 의 데이터를 기반으로
             // DOM 이 생성될것. 그리고 나서 bind 해주어야함. 이것은 KeywordView 에서도 비슷한 상황이 있었음.
+            // 여기서의 render 함수는 keywordview 의 render 함수를 복사해온것과 마찬가지
         })
     },
     

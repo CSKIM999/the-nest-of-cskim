@@ -19,7 +19,8 @@ app.use(cookieParser())
 const mongoose = require('mongoose')
 
 mongoose.connect(config.mongoURI,{}).then(() => console.log('MongoDB CONNECTED...'))
-  .catch(err => console.log(err))
+  .catch(err => console.log('>>>> ERROR <<<<',err))
+
 app.get('/api/hello', (req,res) => {
   res.send("API 반응확인 성공!")
 })

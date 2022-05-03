@@ -18,7 +18,7 @@ function App() {
   return (
     <Router>
       <NavBar />
-      <div style={{ paddingTop: '69px', minHeight: 'calc(100vh - 80px)' }}>
+      <div>
         <hr />
         <Routes>
           <Route exact path="/" element={<AuthLandingPage />} />

@@ -5,7 +5,7 @@ function LeftMenu(props) {
   const items = [
     {
       label:(<a href='/'>Home</a>),
-      key : "mail"
+      key : "home"
     },
     {
       label:(<span>Blogs</span>),

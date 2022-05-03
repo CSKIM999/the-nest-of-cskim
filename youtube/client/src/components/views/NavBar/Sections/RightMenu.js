@@ -4,27 +4,26 @@ import { Menu } from 'antd';
 import axios from 'axios';
 import {useLocation,useNavigate,useParams} from "react-router-dom";
 import { useSelector } from "react-redux";
-function withRouter(Component) {
-  function ComponentWithRouterProp(props) {
-    let location = useLocation();
-    let navigate = useNavigate();
-    let params = useParams();
-    console.log('tag2')
-    return (
-      <Component
-        {...props}
-        router={{ location, navigate, params }}
-      />
-    );
-  }
-  return ComponentWithRouterProp;
-}
+
+// function withRouter(Component) {
+//   function ComponentWithRouterProp(props) {
+//     let location = useLocation();
+//     let navigate = useNavigate();
+//     let params = useParams();
+//     console.log('tag2')
+//     return (
+//       <Component
+//         {...props}
+//         router={{ location, navigate, params }}
+//       />
+//     );
+//   }
+//   return ComponentWithRouterProp;
+// }
 
 function RightMenu(props) {
   const user = useSelector(state => state.user)
   let navigate = useNavigate();
-  debugger
-  console.log('tag')
   const logoutHandler = () => {
     axios.get(`/api/users/logout`)
       .then(response => {
@@ -50,8 +49,6 @@ function RightMenu(props) {
     ]
     return { items }
 
-    // return <Menu mode={props.mode} items = {items} />
-
     // return (
     //   <Menu mode={props.mode}>
     //     <Menu.Item key="mail">
@@ -62,6 +59,7 @@ function RightMenu(props) {
     //     </Menu.Item>
     //   </Menu>
     // )
+    
   } else {
     const items = [
       {
@@ -70,8 +68,6 @@ function RightMenu(props) {
       }
     ]
     return { items }
-
-    // return <Menu mode={props.mode} items = {items} />
 
     // return (
 
@@ -84,5 +80,5 @@ function RightMenu(props) {
   }
 }
 
-export default RightMenu(withRouter());
+export default RightMenu;
 

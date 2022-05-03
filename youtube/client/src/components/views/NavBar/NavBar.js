@@ -7,22 +7,21 @@ import './Sections/Navbar.css';
 
 
 function NavBar() {
-  const [visible, setVisible] = useState(false)
+  // const [visible, setVisible] = useState(false)
 
-  const showDrawer = () => {
-    setVisible(true)
-  };
+  // const showDrawer = () => {
+  //   setVisible(true)
+  // };
 
-  const onClose = () => {
-    setVisible(false)
-  };
+  // const onClose = () => {
+  //   setVisible(false)
+  // };
   
   const LeftMenuItem = LeftMenu().items
-  const RightMenuItem = RightMenu()
-  console.log(RightMenuItem)
+  const RightMenuItem = RightMenu().items
   const items = [{label : (<a href="/">Logo</a>)}]
   return <Menu mode='horizontal' 
-  items = {items.concat(LeftMenuItem)} />
+  items = {items.concat(LeftMenuItem,RightMenuItem)} />
 
   // return (
   //   <nav className="menu" style={{ position: 'fixed', zIndex: 5, width: '100%' }}>
