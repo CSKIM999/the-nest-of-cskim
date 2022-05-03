@@ -59,11 +59,15 @@ function RightMenu(props) {
     //     </Menu.Item>
     //   </Menu>
     // )
-    
+
   } else {
     const items = [
       {
-        label:(<a href='/logout' onClick={logoutHandler}>Log-out</a>),
+        label:(<a href='/video/upload'>Video</a>),
+        key : "upload"
+      },
+      {
+        label:(<a href='/' onClick={logoutHandler}>Log-out</a>),
         key : "logout"
       }
     ]

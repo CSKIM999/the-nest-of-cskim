@@ -14,7 +14,6 @@ function App() {
   const AuthRegisterPage = Auth(RegisterPage,false)
   const AuthVideoUploadPage = Auth(VideoUploadPage,true)
 
-
   return (
     <Router>
       <NavBar />
