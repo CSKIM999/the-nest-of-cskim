@@ -16,12 +16,13 @@ function NavBar() {
   // const onClose = () => {
   //   setVisible(false)
   // };
-  
-  const LeftMenuItem = LeftMenu().items
+
+
+  const item = [{label : (<a href="/">Logo</a>)}]
   const RightMenuItem = RightMenu().items
-  const items = [{label : (<a href="/">Logo</a>)}]
-  return <Menu mode='horizontal' 
-  items = {items.concat(LeftMenuItem,RightMenuItem)} />
+  const LeftMenuItem = LeftMenu().items
+  // const items = item.concat(LeftMenuItem,RightMenuItem)
+  return <Menu mode='horizontal' items = {item.concat(LeftMenuItem,RightMenuItem)} />
 
   // return (
   //   <nav className="menu" style={{ position: 'fixed', zIndex: 5, width: '100%' }}>

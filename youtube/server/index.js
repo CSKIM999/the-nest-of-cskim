@@ -21,6 +21,10 @@ const mongoose = require('mongoose')
 mongoose.connect(config.mongoURI,{}).then(() => console.log('MongoDB CONNECTED...'))
   .catch(err => console.log('>>>> ERROR <<<<',err))
 
+  
+app.use('/api/video', require('./routes/video'))
+
+
 app.get('/api/hello', (req,res) => {
   res.send("API 반응확인 성공!")
 })

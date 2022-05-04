@@ -14,7 +14,7 @@ const createStoreWithMiddleWare = applyMiddleware(promiseMiddleware, ReduxThunk)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Provider
       store={createStoreWithMiddleWare(Reducer,
         window.__REDUX_DEVTOOLS_EXTENSION__ &&
@@ -23,7 +23,7 @@ root.render(
     >
       <App />
     </Provider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
