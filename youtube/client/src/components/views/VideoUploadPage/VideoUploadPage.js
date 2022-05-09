@@ -22,10 +22,14 @@ const CategoryOptions = [
 
 function VideoUploadPage() {
   
+  // 정보들을 state 에 저장
   const [VideoTitle, setVideoTitle] = useState("")
   const [Description, setDescription] = useState("")
   const [Private, setPrivate] = useState(0)
   const [Category, setCategory] = useState("Film & Animation")
+  const [FilePath, setFilePath] = useState("")
+  const [Duration, setDuration] = useState("")
+  const [ThumbnailPath, setThumbnailPath] = useState("")
 
   const onTitleChange = (e) => {
     setVideoTitle(e.currentTarget.value)
@@ -45,12 +49,33 @@ function VideoUploadPage() {
     const config = {
       header : {'content-type' : 'miltipart/form-data'}
     }
+
     formData.append('file', files[0])
-    console.log(files)
+
     Axios.post('/api/video/uploadfiles', formData, config)
       .then(response => {
         if (response.data.success) {
           console.log(response.data)
+          
+          let variable ={
+            url : response.data.url,
+            fileName : response.data.fileName
+          }
+
+          setFilePath(response.data.url)
+
+          Axios.post('/api/video/thumbnail', variable)
+            .then( response => {
+              if (response.data.success) {
+                setDuration(response.data.fileDuration)
+                setThumbnailPath(response.data.url)
+                console.log(response.data.url)
+              } else {
+                alert('Thumbnail Create Failed')
+              }
+            })
+
+          
         } else {
           alert('비디오 업로드 실패')
         }
@@ -82,6 +107,15 @@ function VideoUploadPage() {
           </Dropzone>
 
           {/* thumnail */}
+          {/* 앞에 ThumbnailPatah && 을 붙여서 유사 If문을 구현 */}
+          {ThumbnailPath && 
+          
+            <div>
+              {/* ThumbnailPath state 사용하기 */}
+              <img  src={`http://localhost:8000/${ThumbnailPath}`} alt='thumbnail'/>
+            </div>
+          }
+
 
         </div>
 
