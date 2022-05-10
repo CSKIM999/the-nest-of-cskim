@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const { Video } = require('../models/Video')
 // const { Video } = require('../models/Video')
 const multer = require('multer')
 var ffmpeg = require('fluent-ffmpeg')
@@ -28,8 +29,6 @@ router.post('/uploadfiles', (req, res) => {
 
   // 비디오 정보 가져오기
   
-
-
   // todo... 비디오를 서버에 저장하기
   upload(req, res , err => {
     if (err) {
@@ -40,6 +39,35 @@ router.post('/uploadfiles', (req, res) => {
     // url 은 저장된 파일의 경로
   })
 })
+
+
+
+router.post('/uploadVideo', (req, res) => {
+  // todo.... 비디오 정보들 저장하기
+  // req.body : Client 에서 onSubmit 을 통해 건넨 모든 Data 를 갖게 됨
+  const video = new Video(req.body)
+  video.save((err,doc) => {
+    if (err) {return res.json({success:false, err})}
+    res.status(200).json({success:true})
+  })
+})
+
+
+
+router.get('/getVideos', (req, res) => {
+  // 비디오를 DB 에서 가져와서 client 에 보내기
+  // find() 를 사용해서 Video 안의 모든 Video 를 가져옴
+  // Video 의 모든것을 가져오나, 사용한 Schema Method 가 ObjectId 여서 ID 만 가져옴
+  // 따라서 populate('writer') 를 사용해서 원하는 모든 정보를 가져올 수 있음.
+  Video.find()
+    .populate('writer') 
+    .exec((err, videos) => {
+      if (err) {return res.status(400).send(err)}
+      res.status(200).json({ success: true, videos})
+    })
+})
+
+
 router.post('/thumbnail', (req, res) => {
   // create thumbnail and Get the Video's runningtime 
   let filePath = ""

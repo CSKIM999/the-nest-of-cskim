@@ -3,6 +3,8 @@ import Dropzone from 'react-dropzone'
 import { Typography, Button, Form, message, Input } from 'antd'
 import {PlusOutlined} from '@ant-design/icons'
 import * as Axios from 'axios'; //for error "Axios.post is not a funtion ""
+import { useSelector } from "react-redux"
+import { useNavigate } from 'react-router-dom'
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -21,7 +23,9 @@ const CategoryOptions = [
 
 
 function VideoUploadPage() {
-  
+  const navigate = useNavigate()
+  // useSelector 를 통해 Redux 의 state 에 접근, state 의 user를 가져온다.
+  const user = useSelector(state => state.user)
   // 정보들을 state 에 저장
   const [VideoTitle, setVideoTitle] = useState("")
   const [Description, setDescription] = useState("")
@@ -51,7 +55,6 @@ function VideoUploadPage() {
     }
 
     formData.append('file', files[0])
-
     Axios.post('/api/video/uploadfiles', formData, config)
       .then(response => {
         if (response.data.success) {
@@ -78,10 +81,37 @@ function VideoUploadPage() {
           
         } else {
           alert('비디오 업로드 실패')
+          console.log(response)
         }
       })
   }
+  const onSubmit = (e) => {
+    e.preventDefault();
 
+    const variable = {
+      writer: user.userData._id,
+      title: VideoTitle,
+      description: Description,
+      privacy: Private,
+      filePath: FilePath,
+      category: Category,
+      duration: Duration,
+      thumbnail: ThumbnailPath,
+    }
+    Axios.post('/api/video/uploadVideo', variable)
+      .then(response => {
+        if (response.data.success) {
+
+          message.success('upload successfuly')
+          setTimeout(() => {
+            navigate('/')
+          },1000)
+
+        } else {
+          alert('비디오 업로드에 실패했습니다.')
+        }
+      })
+  }
 
   return (
     <div style={{maxWidth:'700px', margin:'2rem auto'}}>
@@ -89,7 +119,7 @@ function VideoUploadPage() {
         <Title level={2}>Upload Video</Title>
       </div>
 
-      <Form onSubmit>
+      <Form onSubmit={onSubmit}>
         <div style={{display : 'flex' , justifyContent: 'space-between'}}>
           {/* dropzone */}
           <Dropzone 
@@ -112,7 +142,7 @@ function VideoUploadPage() {
           
             <div>
               {/* ThumbnailPath state 사용하기 */}
-              <img  src={`http://localhost:8000/${ThumbnailPath}`} alt='thumbnail'/>
+              <img  src={`http://localhost:5000/${ThumbnailPath}`} alt='thumbnail'/>
             </div>
           }
 
@@ -153,7 +183,7 @@ function VideoUploadPage() {
 
         <br /><br />
 
-        <Button type='primary' size='large' onClick>Submit</Button>
+        <Button type='primary' size='large' onClick={onSubmit}>Submit</Button>
       </Form>
     </div>
   )
