@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom'
 import { Card, Avatar, Typography, Row, Col } from "antd";
 import * as Axios from "axios";
-import moment from 'moment'
+import moment from "moment";
 const { Title } = Typography;
 const { Meta } = Card;
 
@@ -15,7 +16,6 @@ function LandingPage() {
   useEffect(() => {
     Axios.get("/api/video/getVideos").then((response) => {
       if (response.data.success) {
-        console.log(response.data);
         setVideo(response.data.videos);
       } else {
         alert("비디오 가져오기 실패");
@@ -27,10 +27,10 @@ function LandingPage() {
     var minutes = Math.floor(video.duration / 60);
     var seconds = Math.floor(video.duration - minutes * 60);
     return (
-      <Col lg={6} md={8} xs={24}>
+      <Col key = {video._id} lg={6} md={8} xs={24}>
         {/* 해당 동영상으로 이동하기 위해 비디오 아이디로의 링크를 걸어줌 */}
-        <a href={`./video/post${video._id}`}>
-          <div style={{ position: "relative" }}>
+        <div style={{ position: "relative" }}>
+          <Link to={`./video/${video._id}`}>
             <img
               style={{ width: "100%" }}
               src={`http://localhost:5000/${video.thumbnail}`}
@@ -41,8 +41,8 @@ function LandingPage() {
                 {minutes}:{seconds}
               </span>
             </div>
-          </div>
-        </a>
+          </Link>
+        </div>
         <br />
         {/* User 의 이미지 */}
         <Meta
@@ -50,8 +50,10 @@ function LandingPage() {
           title={video.title}
           description=""
         />
-        <span>{video.writer.name}</span><br />
-        <span style={{ marginleft: "3rem" }}>{video.views} views</span> - <span>{moment(video.createdAt).format("MMM Do YY")}</span>
+        <span>{video.writer.name}</span>
+        <br />
+        <span style={{ marginleft: "3rem" }}>{video.views} views</span> -{" "}
+        <span>{moment(video.createdAt).format("MMM Do YY")}</span>
       </Col>
     );
   });
@@ -60,9 +62,7 @@ function LandingPage() {
     <div style={{ width: "85%", margin: "3rem auto" }}>
       <Title level={2}>Recommended</Title>
       <hr />
-      <Row gutter={[32, 16]}>
-        {renderCards}
-      </Row>
+      <Row gutter={[32, 16]}>{renderCards}</Row>
     </div>
   );
 }

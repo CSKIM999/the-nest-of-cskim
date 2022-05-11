@@ -21,7 +21,7 @@ const mongoose = require('mongoose')
 mongoose.connect(config.mongoURI,{}).then(() => console.log('MongoDB CONNECTED...'))
   .catch(err => console.log('>>>> ERROR <<<<',err))
   
-  app.use('/api/video', require('./routes/video'))
+app.use('/api/video', require('./routes/video'))
 
 app.use('/uploads', express.static('uploads'));
 

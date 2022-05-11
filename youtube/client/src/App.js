@@ -7,12 +7,15 @@ import LoginPage from "./components/views/LoginPage/LoginPage";
 import Auth from "./hoc/auth";
 import NavBar from "./components/views/NavBar/NavBar";
 import VideoUploadPage from "./components/views/VideoUploadPage/VideoUploadPage";
+import VideoDetailPage from "./components/views/VideoDetailPage/VideoDetailPage";
 
 function App() {
   const AuthLandingPage = Auth(LandingPage,null)
   const AuthLoginPage = Auth(LoginPage,false)
   const AuthRegisterPage = Auth(RegisterPage,false)
   const AuthVideoUploadPage = Auth(VideoUploadPage,true)
+  const AuthVideoDetailPage = Auth(VideoDetailPage,null)
+
 
   return (
     <Router>
@@ -23,7 +26,8 @@ function App() {
           <Route exact path="/" element={<AuthLandingPage />} />
           <Route exact path="/login" element={<AuthLoginPage />} />
           <Route exact path="/register" element={<AuthRegisterPage />} />
-          <Route exact path="/video/upload" element={<AuthVideoUploadPage />} />
+          <Route path="/video/upload" element={<AuthVideoUploadPage />} />
+          <Route exact path="/video/:videoId" element={<AuthVideoDetailPage />} />
         </Routes>
       </div>
     </Router>
