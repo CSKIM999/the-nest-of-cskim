@@ -44,18 +44,16 @@ router.post("/uploadfiles", (req, res) => {
   });
 });
 
-
 router.post("/getVideoDetail", (req, res) => {
   // todo.... 비디오Id를 이용해서 데이터 가져오기
-  Video.findOne({ "_id": req.body.videoId })
+  Video.findOne({ _id: req.body.videoId })
     .populate("writer") // 이번에도 마찬가지로 writer 와 모든 정보를 가져오게됨
     .exec((err, videoDetail) => {
       if (err) return res.status(400).send(err);
-      debugger
+      debugger;
       return res.status(200).json({ success: true, videoDetail });
     });
 });
-
 
 router.post("/uploadVideo", (req, res) => {
   // todo.... 비디오 정보들 저장하기

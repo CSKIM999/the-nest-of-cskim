@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { Card, Avatar, Typography, Row, Col } from "antd";
 import * as Axios from "axios";
 import moment from "moment";
@@ -27,7 +27,7 @@ function LandingPage() {
     var minutes = Math.floor(video.duration / 60);
     var seconds = Math.floor(video.duration - minutes * 60);
     return (
-      <Col key = {video._id} lg={6} md={8} xs={24}>
+      <Col key={video._id} lg={6} md={8} xs={24}>
         {/* 해당 동영상으로 이동하기 위해 비디오 아이디로의 링크를 걸어줌 */}
         <div style={{ position: "relative" }}>
           <Link to={`./video/${video._id}`}>

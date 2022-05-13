@@ -8,14 +8,15 @@ import Auth from "./hoc/auth";
 import NavBar from "./components/views/NavBar/NavBar";
 import VideoUploadPage from "./components/views/VideoUploadPage/VideoUploadPage";
 import VideoDetailPage from "./components/views/VideoDetailPage/VideoDetailPage";
+import SubscriptionPage from "./components/views/Subscription/SubscriptionPage";
 
 function App() {
-  const AuthLandingPage = Auth(LandingPage,null)
-  const AuthLoginPage = Auth(LoginPage,false)
-  const AuthRegisterPage = Auth(RegisterPage,false)
-  const AuthVideoUploadPage = Auth(VideoUploadPage,true)
-  const AuthVideoDetailPage = Auth(VideoDetailPage,null)
-
+  const AuthLandingPage = Auth(LandingPage, null);
+  const AuthLoginPage = Auth(LoginPage, false);
+  const AuthRegisterPage = Auth(RegisterPage, false);
+  const AuthVideoUploadPage = Auth(VideoUploadPage, true);
+  const AuthVideoDetailPage = Auth(VideoDetailPage, null);
+  const AuthSubscriptionPage = Auth(SubscriptionPage, null);
 
   return (
     <Router>
@@ -27,7 +28,12 @@ function App() {
           <Route exact path="/login" element={<AuthLoginPage />} />
           <Route exact path="/register" element={<AuthRegisterPage />} />
           <Route path="/video/upload" element={<AuthVideoUploadPage />} />
-          <Route exact path="/video/:videoId" element={<AuthVideoDetailPage />} />
+          <Route path="/subscription" element={<AuthSubscriptionPage />} />
+          <Route
+            exact
+            path="/video/:videoId"
+            element={<AuthVideoDetailPage />}
+          />
         </Routes>
       </div>
     </Router>
