@@ -9,10 +9,10 @@ export default function (SpecificComponent, option, adminRoute = null) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     useEffect(() => {
-      dispatch(auth()).then((response) => {
+      dispatch(auth()).then(async (response) => {
         // console.log(response)
         // without login
-        if (!response.payload.isAuth) {
+        if (await !response.payload.isAuth) {
           if (option) {
             navigate("/login");
           }
@@ -21,13 +21,13 @@ export default function (SpecificComponent, option, adminRoute = null) {
           if (adminRoute && !response.payload.isAdmin) {
             navigate("/");
           } else {
-            if (!option) {
+            if (option === false) {
               navigate("/");
             }
           }
         }
       });
-    }, []);
+    }, [dispatch, props.history]);
     return <SpecificComponent {...props} />;
   }
 

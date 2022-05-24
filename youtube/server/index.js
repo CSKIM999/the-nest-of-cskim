@@ -23,8 +23,6 @@ mongoose
 app.use("/api/video", require("./routes/video"));
 app.use("/api/subscribe", require("./routes/subscribe"));
 
-
-
 app.use("/uploads", express.static("uploads"));
 
 app.post("/api/users/register", (req, res) => {

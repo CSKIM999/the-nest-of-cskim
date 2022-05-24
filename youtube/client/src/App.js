@@ -8,7 +8,7 @@ import Auth from "./hoc/auth";
 import NavBar from "./components/views/NavBar/NavBar";
 import VideoUploadPage from "./components/views/VideoUploadPage/VideoUploadPage";
 import VideoDetailPage from "./components/views/VideoDetailPage/VideoDetailPage";
-import SubscriptionPage from "./components/views/Subscription/SubscriptionPage";
+import SubscriptionPage from "./components/views/SubscriptionPage/SubscriptionPage";
 
 function App() {
   const AuthLandingPage = Auth(LandingPage, null);

@@ -4,10 +4,8 @@ import * as Axios from "axios";
 function Subscribe(props) {
   const [SubscribeNumber, setSubscribeNumber] = useState(0);
   const [Subscribed, setSubscribed] = useState(false);
-
   useEffect(() => {
     let variable = { userTo: props.userTo };
-
     Axios.post("/api/subscribe/subscribeNumber", variable).then((response) => {
       if (response.data.success) {
         setSubscribeNumber(response.data.subscribeNumber);
@@ -15,12 +13,10 @@ function Subscribe(props) {
         alert("구독자 정보를 받아오지 못했습니다.");
       }
     });
-
     let subscribedVariable = {
       userTo: props.userTo,
       userFrom: localStorage.getItem("userId"),
     };
-
     Axios.post("/api/subscribe/subscribed", subscribedVariable).then(
       (response) => {
         if (response.data.success) {
@@ -29,7 +25,8 @@ function Subscribe(props) {
           alert("구독여부 정보를 받아오지 못했습니다.");
         }
       }
-    );
+
+    )
   }, []);
 
   const onSubscribe = () => {
