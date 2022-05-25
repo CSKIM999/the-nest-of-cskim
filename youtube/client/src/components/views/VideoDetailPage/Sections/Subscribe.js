@@ -25,8 +25,7 @@ function Subscribe(props) {
           alert("구독여부 정보를 받아오지 못했습니다.");
         }
       }
-
-    )
+    );
   }, []);
 
   const onSubscribe = () => {

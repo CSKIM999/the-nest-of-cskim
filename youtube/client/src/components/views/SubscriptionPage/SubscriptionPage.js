@@ -7,21 +7,21 @@ const { Title } = Typography;
 const { Meta } = Card;
 
 function SubscriptionPage() {
-
   const [Video, setVideo] = useState([]);
 
   useEffect(() => {
     const subscriptionVariables = {
-      userFrom : localStorage.getItem('userId')
-    }
-    Axios.post("/api/video/getSubscriptionVideos", subscriptionVariables)
-    .then((response) => {
-      if (response.data.success) {
-        setVideo(response.data.videos);
-      } else {
-        alert("비디오 가져오기 실패");
+      userFrom: localStorage.getItem("userId"),
+    };
+    Axios.post("/api/video/getSubscriptionVideos", subscriptionVariables).then(
+      (response) => {
+        if (response.data.success) {
+          setVideo(response.data.videos);
+        } else {
+          alert("비디오 가져오기 실패");
+        }
       }
-    });
+    );
   }, []);
 
   const renderCards = Video.map((video, index) => {
