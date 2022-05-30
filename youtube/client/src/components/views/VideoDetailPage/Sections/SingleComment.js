@@ -15,12 +15,12 @@ function SingleComment(props) {
   };
 
   const onHandleChange = (event) => {
-    setCommentValue(event.currentTarget.CommentValue);
+    setCommentValue(event.currentTarget.value);
   };
 
   const onSubmit = (event) => {
     event.preventDefault();
-
+    console.log(event,CommentValue)
     const variable = {
       content: CommentValue,
       writer: user.userData._id,
@@ -30,8 +30,10 @@ function SingleComment(props) {
 
     Axios.post("/api/comment/saveComment", variable).then((response) => {
       if (response.data.success) {
-        console.log("refresh");
+        setCommentValue("")
+        debugger
         props.refreshFunction(response.data.result);
+
       } else {
         alert(" 코멘트 발행에 실패했습니다.");
       }

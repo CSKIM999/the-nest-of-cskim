@@ -15,29 +15,31 @@ function VideoDetailPage() {
   const [VideoDetail, setVideoDetail] = useState([]);
   const [Comments, setComments] = useState([]);
 
+  // Comment 에서 Submit 된 내용 (newComments) 을 현재 VDpage 까지 들고 옴
+  // 들고 온 내용 (newComments) 을 기반으로 useState 를 통해 다시 하위 컴포넌츠에 뿌려주게 됨
   const refreshFunction = (newComments) => {
     setComments(Comments.concat(newComments))
   }
 
-  const AsyncPostVideoDetail = async () => {
-    await Axios.post("/api/video/getVideoDetail", variable).then((response) => {
-      if (response.data.success) {
-        setVideoDetail(response.data.videoDetail);
-      } else {
-        alert(`getVideoError in ${tag}`);
-      }
-    });
+  // const AsyncPostVideoDetail = async () => {
+  //   await Axios.post("/api/video/getVideoDetail", variable).then((response) => {
+  //     if (response.data.success) {
+  //       setVideoDetail(response.data.videoDetail);
+  //     } else {
+  //       alert(`getVideoError in ${tag}`);
+  //     }
+  //   });
 
-    await Axios.post('/api/comment/getComments',variable)
-      .then(response => {
-        if (response.data.success) {
-          setComments(response.data.comments)
-        } else {
-          alert(`Failed to get video Info in ${tag}`)
-        }
+  //   await Axios.post('/api/comment/getComments',variable)
+  //     .then(response => {
+  //       if (response.data.success) {
+  //         setComments(response.data.comments)
+  //       } else {
+  //         alert(`Failed to get video Info in ${tag}`)
+  //       }
 
-      })
-  };
+  //     })
+  // };
 
   useEffect(() => {
     Axios.post("/api/video/getVideoDetail", variable).then((response) => {

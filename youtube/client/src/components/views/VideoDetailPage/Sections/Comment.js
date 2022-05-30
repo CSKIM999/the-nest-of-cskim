@@ -2,6 +2,7 @@ import * as Axios from "axios";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import SingleComment from "./SingleComment";
+import ReplyComment from "./ReplyComment";
 import { Input, Button } from "antd";
 const { TextArea } = Input;
 
@@ -25,6 +26,7 @@ function Comment(props) {
 
     Axios.post("/api/comment/saveComment", variable).then((response) => {
       if (response.data.success) {
+        setcommentValue("")
         props.refreshFunction(response.data.result)
       } else {
         alert(" 코멘트 발행에 실패했습니다.");
@@ -39,8 +41,11 @@ function Comment(props) {
 
       {/* Comment Lists  */}
       {props.commentLists && props.commentLists.map((comment, index) => (
-        (!comment.responseTo && 
-            <SingleComment comment={comment} postId={ videoId } refreshFunction={ props.refreshFunction }></SingleComment>
+        (!comment.responseTo && //두가지 이상의 html 요소를 넣고싶다면 React.Fragment 사용!
+            <React.Fragment>
+              <SingleComment comment={comment} postId={ videoId } refreshFunction={ props.refreshFunction }></SingleComment>
+              <ReplyComment parentCommentId = {comment._id} postId={ videoId } commentLists = {props.commentLists} />
+            </React.Fragment>
         )
       ))}
       
