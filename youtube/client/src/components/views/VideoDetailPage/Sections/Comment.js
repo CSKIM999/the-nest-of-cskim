@@ -44,7 +44,7 @@ function Comment(props) {
         (!comment.responseTo && //두가지 이상의 html 요소를 넣고싶다면 React.Fragment 사용!
             <React.Fragment>
               <SingleComment comment={comment} postId={ videoId } refreshFunction={ props.refreshFunction }></SingleComment>
-              <ReplyComment parentCommentId = {comment._id} postId={ videoId } commentLists = {props.commentLists} />
+              <ReplyComment refreshFunction={ props.refreshFunction } parentCommentId = {comment._id} postId={ videoId } commentLists = {props.commentLists} />
             </React.Fragment>
         )
       ))}

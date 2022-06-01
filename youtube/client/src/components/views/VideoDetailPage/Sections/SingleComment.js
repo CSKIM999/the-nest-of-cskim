@@ -3,6 +3,7 @@ import * as Axios from "axios";
 import { useSelector } from "react-redux";
 import { Comment, Avatar, Button, Input } from "antd";
 import { AmazonOutlined } from "@ant-design/icons";
+import LikeDislikes from "./LikeDislikes";
 const { TextArea } = Input;
 
 function SingleComment(props) {
@@ -20,7 +21,6 @@ function SingleComment(props) {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log(event,CommentValue)
     const variable = {
       content: CommentValue,
       writer: user.userData._id,
@@ -31,9 +31,8 @@ function SingleComment(props) {
     Axios.post("/api/comment/saveComment", variable).then((response) => {
       if (response.data.success) {
         setCommentValue("")
-        debugger
+        setOpenReply(false)
         props.refreshFunction(response.data.result);
-
       } else {
         alert(" 코멘트 발행에 실패했습니다.");
       }
@@ -41,7 +40,8 @@ function SingleComment(props) {
   };
 
   const actions = [
-    <span onClick={onClickReplyOpen} key="comment-basic-reply-to">
+    <LikeDislikes userId={localStorage.getItem('userId')} commentId={props.comment._id} />
+    ,<span onClick={onClickReplyOpen} key="comment-basic-reply-to">
       Reply to
     </span>,
   ];

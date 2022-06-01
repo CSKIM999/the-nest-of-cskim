@@ -6,6 +6,7 @@ import * as Axios from "axios";
 import SideVideo from "./Sections/SideVideo";
 import Subscribe from "./Sections/Subscribe";
 import Comment from "./Sections/Comment";
+import LikeDislikes from "./Sections/LikeDislikes";
 
 const tag = "VideoDetailPage";
 
@@ -82,12 +83,12 @@ function VideoDetailPage() {
               controls
             />
 
-            <List.Item actions={[subscribeButton]}>
-              <List.Item.Meta
-                avatar={<Avatar icon= {<GithubOutlined />} src={VideoDetail.writer?.image} />}
-                title={VideoDetail.writer?.name}
-                description={VideoDetail.description}
-              />
+            <List.Item actions={[<LikeDislikes video  userId={localStorage.getItem('userId')}  videoId={videoId} />, [subscribeButton]]}>
+            <List.Item.Meta
+              avatar={<Avatar icon= {<GithubOutlined />} src={VideoDetail.writer?.image} />}
+              title={VideoDetail.writer?.name}
+              description={VideoDetail.description}
+            />
             </List.Item>
             <Comment refreshFunction = {refreshFunction} commentLists={Comments} postId={videoId} />
           </div>
