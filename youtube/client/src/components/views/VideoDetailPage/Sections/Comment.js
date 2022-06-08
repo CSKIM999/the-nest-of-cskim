@@ -42,7 +42,7 @@ function Comment(props) {
       {/* Comment Lists  */}
       {props.commentLists && props.commentLists.map((comment, index) => (
         (!comment.responseTo && //두가지 이상의 html 요소를 넣고싶다면 React.Fragment 사용!
-            <React.Fragment>
+            <React.Fragment key={index}>
               <SingleComment comment={comment} postId={ videoId } refreshFunction={ props.refreshFunction }></SingleComment>
               <ReplyComment refreshFunction={ props.refreshFunction } parentCommentId = {comment._id} postId={ videoId } commentLists = {props.commentLists} />
             </React.Fragment>
