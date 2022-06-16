@@ -11,6 +11,8 @@ const config = require('./config/key')
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(cookieParser())
+
+app.use('/api/favorite', require('./routes/favorite'))
 // www form 의 data 와 json 타입의 data 를 받아와 사용할것
 
 

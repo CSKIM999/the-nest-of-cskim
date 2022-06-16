@@ -7,7 +7,7 @@ function LeftMenu(props) {
       key : "home"
     },
     {
-      label:(<a href='/subscription'>Subscription</a>),
+      label:(<a href='/Favorite'>Favorite</a>),
       key : "Subscription"
     }
   ]
