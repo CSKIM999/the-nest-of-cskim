@@ -1,5 +1,6 @@
 import * as Axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Button } from 'antd'
 
 function Favorite(props) {
   const movieId = props.movieId;
@@ -11,11 +12,17 @@ function Favorite(props) {
   const [FavoriteNumber, setFavoriteNumber] = useState(0);
   const [Favorited, setFavorited] = useState(false);
 
+  let variables = {
+    // userFrom 이라고 작성하면
+    // userFrom : userFrom 으로 인식하게 됨.
+    userFrom,
+    movieId,
+    movieTitle,
+    moviePost,
+    movieRunTime
+  };
+
   useEffect(() => {
-    let variables = {
-      userFrom,
-      movieId,
-    };
     Axios.post("/api/favorite/favoriteNumber", variables).then((response) => {
       if (response.data.success) {
         setFavoriteNumber(response.data.favoriteNumber);
@@ -33,10 +40,37 @@ function Favorite(props) {
     });
   }, []);
 
+  const onClickFavorite = () => {
+    if (Favorited) {
+      Axios.post('/api/favorite/removeFromFavorite', variables)
+      .then ( response => {
+        if (response.data.success) {
+          setFavoriteNumber(FavoriteNumber - 1)
+          setFavorited(!Favorited)
+        } else {
+          alert('ERROR : REMOVE FAVORITE')
+        }
+      })
+      
+    } else {
+      Axios.post('/api/favorite/addToFavorite', variables)
+      .then ( response => {
+        if (response.data.success) {
+          setFavoriteNumber(FavoriteNumber + 1)
+          setFavorited(!Favorited)
+        } else {
+          alert('ERROR : ADD FAVORITE')
+        }
+      })
+
+    }
+  }
+
+
   return (
-    <button>
-      {Favorited ? "NOT FAVORITE" : "ADD TO FAVORITE !"} {FavoriteNumber}
-    </button>
+    <Button onClick={onClickFavorite}>
+      {Favorited ? "NOT FAVORITE" : "ADD TO FAVORITE"} {FavoriteNumber}
+    </Button>
   );
 }
 
