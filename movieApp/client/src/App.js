@@ -7,12 +7,14 @@ import LoginPage from "./components/views/LoginPage/LoginPage";
 import Auth from "./hoc/auth";
 import NavBar from "./components/views/NavBar/NavBar";
 import MovieDetail from './components/views/MovieDetail/MovieDetail';
+import FavoritePage from './components/views/FavoritePage/FavoritePage';
 
 function App() {
   const AuthLandingPage = Auth(LandingPage,null)
   const AuthLoginPage = Auth(LoginPage,false)
   const AuthRegisterPage = Auth(RegisterPage,false)
   const AuthMovieDetail = Auth(MovieDetail,null)
+  const AuthFavoritePage = Auth(FavoritePage,true)
 
 
   return (
@@ -23,6 +25,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<AuthLandingPage />} />
           <Route exact path="/login" element={<AuthLoginPage />} />
+          <Route exact path="/favorite" element={<AuthFavoritePage />} />
           <Route exact path="/register" element={<AuthRegisterPage />} />
           <Route exact path="/movie/:movieId" element={<AuthMovieDetail />} />
         </Routes>

@@ -1,6 +1,6 @@
 import React from 'react'
 import {} from 'react-router-dom'
-import {Descriptions, Badge} from 'antd'
+import {Descriptions} from 'antd'
 
 function MovieInfo(props) {
   let movie = props.movie

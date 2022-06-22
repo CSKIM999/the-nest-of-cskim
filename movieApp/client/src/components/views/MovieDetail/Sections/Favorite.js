@@ -11,7 +11,6 @@ function Favorite(props) {
 
   const [FavoriteNumber, setFavoriteNumber] = useState(0);
   const [Favorited, setFavorited] = useState(false);
-
   let variables = {
     // userFrom 이라고 작성하면
     // userFrom : userFrom 으로 인식하게 됨.
@@ -41,6 +40,7 @@ function Favorite(props) {
   }, []);
 
   const onClickFavorite = () => {
+    console.log(variables)
     if (Favorited) {
       Axios.post('/api/favorite/removeFromFavorite', variables)
       .then ( response => {

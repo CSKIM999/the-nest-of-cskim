@@ -11,7 +11,6 @@ export default function (SpecificComponent, option, adminRoute = null) {
     const dispatch = useDispatch()
     useEffect(() => {
       dispatch(auth()).then(response => {
-        console.log(response)
         // without login
         if (!response.payload.isAuth) {
           if (option) {
@@ -24,7 +23,7 @@ export default function (SpecificComponent, option, adminRoute = null) {
             navigate('/')
             alert('관리자 권한이 필요합니다')
           } else {
-            if (!option) {
+            if (option === false) {
               navigate('/')
               alert('이미 로그인되어있습니다')
             }

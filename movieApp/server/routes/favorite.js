@@ -38,6 +38,7 @@ router.post("/removeFromFavorite", (req, res) => {
 
 router.post("/addToFavorite", (req, res) => {
   // new Favorite 를 통해 새로운 모델 Document 객체를 생성하고 그 안에 req.body 를 넣어줌.
+  console.log(req.body)
   const favorite = new Favorite(req.body)
 
   // 객체를 mongoose 의 save 를 통해 mongodb에 넣어주기
@@ -45,6 +46,15 @@ router.post("/addToFavorite", (req, res) => {
     if (err) return res.status(400).send(err)
     return res.status(200).json({ success : true })
   })
+
+});
+
+router.post("/getFavoredMovie", (req, res) => {
+  Favorite.find({'userFrom' : req.body.userFrom})
+    .exec((err, favorite) => {
+      if (err) return res.status(400).send(err)
+      return res.status(200).json({success: true, favorite})
+    })
 
 });
 

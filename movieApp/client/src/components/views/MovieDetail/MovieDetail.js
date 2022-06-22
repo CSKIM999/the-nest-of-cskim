@@ -37,12 +37,10 @@ function MovieDetail(props) {
     setActorToggle(!ActorToggle);
   };
 
-  console.log(Casts);
-
   return (
     <div>
       {/* HEADER  */}
-      {Movie && (
+      {Movie && Movie.backdrop_path && (
         <MainImage
           image={`${IMAGE_BASE_URL}w1280${Movie.backdrop_path}`}
           title={Movie.original_title}
@@ -53,7 +51,7 @@ function MovieDetail(props) {
       {/* BODY */}
       <div style={{ width: "85%", margin: "1rem auto" }}>
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Favorite movieInfo={Movie} movieId={movieId} useFrom={localStorage.getItem('userId')} />
+          <Favorite movieInfo={Movie} movieId={movieId} userFrom={localStorage.getItem('userId')} />
         </div>
         {/* Movie Info */}
         <MovieInfo movie={Movie} />
