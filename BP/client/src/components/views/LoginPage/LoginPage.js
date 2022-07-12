@@ -18,8 +18,6 @@ function LoginPage() {
   }
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    // submit event 이기때문에 이 이 페이지는 제출되나, 이동시키는 페이지가 없어
-    // 페이지가 새로고침 되기만 함.
     let body = {
       email : Email,
       password : Password
