@@ -31,6 +31,10 @@ function RightMenu(props) {
   } else {
     const items = [
       {
+        label: <a href="/product/upload">Upload</a>,
+        key: "upload",
+      },
+      {
         label: (
           <a href="/" onClick={logoutHandler}>
             Log-out
