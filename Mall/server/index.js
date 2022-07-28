@@ -19,7 +19,9 @@ mongoose
 .then(() => console.log("MongoDB CONNECTED..."))
 .catch((err) => console.log("ERROR : MONGODB CONNECT //", err));
 
+// image 파일에 접근하고싶을때 express 의 static 을 사용
 app.use("/api/product", require('./routes/product'));
+app.use(express.static("uploads"));
 app.use("/uploads", express.static("uploads"));
 
 app.post("/api/users/register", (req, res) => {
@@ -35,7 +37,6 @@ app.post("/api/users/register", (req, res) => {
 app.post("/api/users/login", (req, res) => {
   User.findOne({ email: req.body.email }, (err, user) => {
     if (!user) {
-      console.log(req.body);
       return res.json({
         loginSuccess: false,
         message: "이메일이 일치하지 않습니다",
