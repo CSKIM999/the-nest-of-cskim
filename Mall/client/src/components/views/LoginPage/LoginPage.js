@@ -27,7 +27,7 @@ function LoginPage() {
     };
     dispatch(loginUser(body)).then((response) => {
       if (response.payload.loginSuccess) {
-        window.localStorage.setItem('userId', response.payload.userId)
+        window.localStorage.setItem("userId", response.payload.userId);
         navigate("/");
       } else {
         alert("error");
@@ -48,7 +48,7 @@ function LoginPage() {
       <Form
         name="basic"
         labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16,}}
+        wrapperCol={{ span: 16 }}
         onFinish={onSubmitHandler}
         autoComplete="off"
       >
@@ -59,7 +59,7 @@ function LoginPage() {
             { required: true, message: "Please Input Your E-Mail Adress" },
           ]}
         >
-          <Input onChange={onEmailHandler}/>
+          <Input onChange={onEmailHandler} />
         </Form.Item>
 
         {/* <label>Email</label>
@@ -73,7 +73,7 @@ function LoginPage() {
         </Form.Item>
         {/* <label>Password</label>
         <input type="password" value={Password} onChange={onPasswordHandler} /> */}
-        <Button type="primary" htmlType="submit" >
+        <Button type="primary" htmlType="submit">
           Login
         </Button>
       </Form>

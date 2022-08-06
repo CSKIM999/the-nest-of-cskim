@@ -15,12 +15,12 @@ app.use(cookieParser());
 
 const mongoose = require("mongoose");
 mongoose
-.connect(config.mongoURI, {})
-.then(() => console.log("MongoDB CONNECTED..."))
-.catch((err) => console.log("ERROR : MONGODB CONNECT //", err));
+  .connect(config.mongoURI, {})
+  .then(() => console.log("MongoDB CONNECTED..."))
+  .catch((err) => console.log("ERROR : MONGODB CONNECT //", err));
 
 // image 파일에 접근하고싶을때 express 의 static 을 사용
-app.use("/api/product", require('./routes/product'));
+app.use("/api/product", require("./routes/product"));
 app.use(express.static("uploads"));
 app.use("/uploads", express.static("uploads"));
 
@@ -80,6 +80,5 @@ app.get("/api/users/logout", auth, (req, res) => {
     });
   });
 });
-
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

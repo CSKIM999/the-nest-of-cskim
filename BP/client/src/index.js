@@ -13,6 +13,7 @@ import Reducer from './_reducers'
 const createStoreWithMiddleWare = applyMiddleware(promiseMiddleware, ReduxThunk)(createStore)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
     <Provider
